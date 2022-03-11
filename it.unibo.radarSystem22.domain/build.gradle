@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'application'
-    id 'jacoco'
+        id 'jacoco'
 }
 
 version '1.0'
@@ -38,7 +38,7 @@ eclipse {
     }
 }
 
-mainClassName = 'it.unibo.radarSystem22.main.RadarUsageMain'
+mainClassName = 'it.unibo.xxx'  //TODO
 
 jar {
     from sourceSets.main.allSource
