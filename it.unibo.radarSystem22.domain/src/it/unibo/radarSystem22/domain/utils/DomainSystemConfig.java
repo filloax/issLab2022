@@ -17,9 +17,12 @@ public class DomainSystemConfig {
  
 	public static int sonarDelay          =  100;     
 	public static int sonarDistanceMax    =  150;     
-	public static boolean sonarObservable =  false;     
-	public static int DLIMIT              =  15;     
-	public static int testingDistance     =  DLIMIT - 2;     
+	public static boolean sonarObservable =  false;
+	public static int DLIMIT              =  15;
+	public static int testingDistance     =  DLIMIT - 2;
+	public static int sonarMockDelta = -1;
+	public static int sonarMockStartDist = 100;
+	public static boolean sonarMockVerbose = false;
     
 	public static boolean tracing         = false;	
 	public static boolean testing         = false;			
@@ -47,6 +50,9 @@ public class DomainSystemConfig {
 			DLIMIT = object.getInt("DLIMIT");
 			tracing = object.getBoolean("tracing");
 			testing = object.getBoolean("testing");
+			sonarMockDelta = object.getInt("sonarMockDelta");
+			sonarMockStartDist = object.getInt("sonarMockStartDist");
+			sonarMockVerbose = object.getBoolean("sonarMockVerbose");
 
 		} catch (FileNotFoundException | JSONException e) {
  			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );

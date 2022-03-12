@@ -8,5 +8,8 @@
   "sonarDistanceMax": 1000,
   "DLIMIT": 40,
   "tracing": true,
-  "testing": true
+  "testing": false,
+  "sonarMockDelta": -1, 
+  "sonarMockStartDist": 20,
+  "sonarMockVerbose": true
 }

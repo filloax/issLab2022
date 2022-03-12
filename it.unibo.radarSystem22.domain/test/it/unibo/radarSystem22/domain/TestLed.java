@@ -25,7 +25,7 @@ public class TestLed {
 	  
 	  @Test
 	  public void testLedMock() throws InterruptedException {
-	    ILed led = LedModel.create();
+	    ILed led = DeviceFactory.createLed();
 	    assertTrue( ! led.getState() );
 
 	    led.turnOn();
