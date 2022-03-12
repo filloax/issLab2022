@@ -3,6 +3,9 @@ package it.unibo.radarSystem22.domain.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -25,35 +28,42 @@ public class DomainSystemConfig {
 	public static void setTheConfiguration(  ) {
 		setTheConfiguration("../DomainSystemConfig.json");
 	}
-	
+
 	public static void setTheConfiguration( String resourceName ) {
 		//Nella distribuzione resourceName è in una dir che include la bin  
-		FileInputStream fis = null;
 		try {
 			ColorsOut.out("%%% setTheConfiguration from file:" + resourceName);
-			if(  fis == null ) {
- 				 fis = new FileInputStream(new File(resourceName));
-			}
-	        JSONTokener tokener = new JSONTokener(fis);
-	        JSONObject object   = new JSONObject(tokener);
-	 		
-	        simulation          = object.getBoolean("simulation");
-	        
-	        
-	        webCam           = object.getBoolean("webCam");
-	        
-	        sonarObservable  = object.getBoolean("sonarObservable");	
-	        sonarDelay       = object.getInt("sonarDelay");	
-	        sonarDistanceMax = object.getInt("sonarDistanceMax");	
-	        DLIMIT           = object.getInt("DLIMIT");	
-	        tracing          = object.getBoolean("tracing");
-	        testing          = object.getBoolean("testing");
-	        
- 	        
-		} catch (FileNotFoundException e) {
+
+			JSONTokener tokener = getTokener(resourceName);
+			JSONObject object = new JSONObject(tokener);
+
+			simulation = object.getBoolean("simulation");
+
+			webCam = object.getBoolean("webCam");
+
+			sonarObservable = object.getBoolean("sonarObservable");
+			sonarDelay = object.getInt("sonarDelay");
+			sonarDistanceMax = object.getInt("sonarDistanceMax");
+			DLIMIT = object.getInt("DLIMIT");
+			tracing = object.getBoolean("tracing");
+			testing = object.getBoolean("testing");
+
+		} catch (FileNotFoundException | JSONException e) {
  			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );
 		}
 
-	}	
+	}
+
+	private static JSONTokener getTokener(String resourceName) throws FileNotFoundException {
+			FileReader reader = new FileReader(resourceName);
+			JSONTokener tokener;
+			/* Sembra usare Reader, non InputStream
+			FileInputStream fis = new FileInputStream(new File(resourceName));
+	        JSONTokener tokener = new JSONTokener(fis);
+			 */
+
+			tokener = new JSONTokener(reader);
+			return tokener;
+	}
 	 
 }

@@ -1,0 +1,12 @@
+{
+  "simulation": true,
+
+  "webCam": false,
+
+  "sonarObservable": false,
+  "sonarDelay": 100,
+  "sonarDistanceMax": 1000,
+  "DLIMIT": 40,
+  "tracing": true,
+  "testing": true
+}
