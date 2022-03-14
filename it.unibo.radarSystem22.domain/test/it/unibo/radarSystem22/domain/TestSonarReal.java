@@ -35,7 +35,8 @@ public class TestSonarReal {
         testConsumer.start();
         // Se il risultato è coerente per 3 secondi successo, altrimenti termina
         // con errore dentro a SonarTestConsumer
-        BasicUtils.delay(3000);
+        BasicUtils.delay(2000);
         sonar.deactivate();
+        ColorsOut.outappl("Sonar ha fornito lo stesso output per 2 secondi con successo", ColorsOut.GREEN);
     }
 }

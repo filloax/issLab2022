@@ -3,6 +3,7 @@ package it.unibo.radarSystem22.domain.models;
 import it.unibo.radarSystem22.domain.NotImplementedException;
 import it.unibo.radarSystem22.domain.interfaces.ILed;
 import it.unibo.radarSystem22.domain.mock.LedMock;
+import it.unibo.radarSystem22.domain.concrete.LedConcrete;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 
 public abstract class LedModel implements ILed {
@@ -21,7 +22,7 @@ public abstract class LedModel implements ILed {
         return new LedMock();
     }
     public static ILed createLedConcrete() {
-        throw new NotImplementedException("Concrete leds not implemented yet");
+        return new LedConcrete();
     }
 
     protected abstract void ledActivate( boolean val );
