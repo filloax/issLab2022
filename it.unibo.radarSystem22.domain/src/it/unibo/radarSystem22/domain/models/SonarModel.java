@@ -2,6 +2,7 @@ package it.unibo.radarSystem22.domain.models;
 
 import it.unibo.radarSystem22.domain.Distance;
 import it.unibo.radarSystem22.domain.NotImplementedException;
+import it.unibo.radarSystem22.domain.concrete.SonarConcrete;
 import it.unibo.radarSystem22.domain.interfaces.IDistance;
 import it.unibo.radarSystem22.domain.interfaces.ISonar;
 import it.unibo.radarSystem22.domain.mock.SonarMock;
@@ -27,7 +28,7 @@ public abstract class SonarModel implements ISonar {
         return new SonarMock();
     }
     public static ISonar createSonarConcrete() {
-        throw new NotImplementedException("Sonar Concrete not implemented yet");
+        return new SonarConcrete();
     }
 
     protected abstract void sonarSetUp();

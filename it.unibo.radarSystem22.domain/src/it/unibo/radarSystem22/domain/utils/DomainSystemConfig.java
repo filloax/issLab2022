@@ -1,7 +1,5 @@
 package it.unibo.radarSystem22.domain.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
@@ -12,6 +10,9 @@ import org.json.JSONTokener;
 
 public class DomainSystemConfig {
 	public static  boolean simulation    = true;
+	public static boolean ledAvailable = true;
+	public static boolean sonarAvailable = true;
+
  	public static  boolean ledGui        = false;
 	public static  boolean webCam        = false;
  
@@ -29,7 +30,7 @@ public class DomainSystemConfig {
 	
 
 	public static void setTheConfiguration(  ) {
-		setTheConfiguration("../DomainSystemConfig.json");
+		setTheConfiguration("./DomainSystemConfig.json");
 	}
 
 	public static void setTheConfiguration( String resourceName ) {
@@ -41,6 +42,8 @@ public class DomainSystemConfig {
 			JSONObject object = new JSONObject(tokener);
 
 			simulation = object.getBoolean("simulation");
+			ledAvailable = object.getBoolean("ledAvailable");
+			sonarAvailable = object.getBoolean("sonarAvailable");
 
 			webCam = object.getBoolean("webCam");
 
