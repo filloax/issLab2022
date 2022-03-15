@@ -1,3 +1,4 @@
 #!/bin/sh
 
-rsync -av  --exclude 'DomainSystemConfig.json' raspi:issLab2022/ ./
+RASP_HOST=${1:-raspi}
+rsync -av  --exclude 'DomainSystemConfig.json' "$RASP_HOST:issLab2022/" ./

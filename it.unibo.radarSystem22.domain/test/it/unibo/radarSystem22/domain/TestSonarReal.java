@@ -36,7 +36,9 @@ public class TestSonarReal {
         // Se il risultato è coerente per 3 secondi successo, altrimenti termina
         // con errore dentro a SonarTestConsumer
         BasicUtils.delay(2000);
+        int lastVal = sonar.getDistance().getVal();
         sonar.deactivate();
         ColorsOut.outappl("Sonar ha fornito lo stesso output per 2 secondi con successo", ColorsOut.GREEN);
+        System.out.println("Valore finale: " + lastVal);
     }
 }

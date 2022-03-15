@@ -21,15 +21,16 @@ public class SonarMock extends SonarModel {
         if (DomainSystemConfig.testing ) {
             ColorsOut.outappl("[Sonar mock] testing oneshot mode", ColorsOut.MAGENTA);
             updateDistance(DomainSystemConfig.testingDistance);
-            stopped = true;
+            deactivate();
         } else {
             int val = getDistance().getVal() + distUpdateDelta;
             updateDistance(val);
-            if (DomainSystemConfig.sonarMockVerbose)
-                ColorsOut.out("\tCurrent distance: " + val);
-            stopped = val <= 0 || val >= DomainSystemConfig.sonarDistanceMax;
-            if (stopped && DomainSystemConfig.sonarMockVerbose)
-                ColorsOut.outappl("Stopped", ColorsOut.GREEN);
+            boolean stop = val <= 0 || val >= DomainSystemConfig.sonarDistanceMax;
+            if (stop) {
+                deactivate();
+                if (DomainSystemConfig.sonarVerbose)
+                    ColorsOut.outappl("Stopped", ColorsOut.GREEN);
+            }
             BasicUtils.delay(DomainSystemConfig.sonarDelay);
         }
     }

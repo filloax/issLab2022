@@ -12,6 +12,7 @@ public class DomainSystemConfig {
 	public static  boolean simulation    = true;
 	public static boolean ledAvailable = true;
 	public static boolean sonarAvailable = true;
+	public static boolean radarAvailable = false;
 
  	public static  boolean ledGui        = false;
 	public static  boolean webCam        = false;
@@ -23,7 +24,7 @@ public class DomainSystemConfig {
 	public static int testingDistance     =  DLIMIT - 2;
 	public static int sonarMockDelta = -1;
 	public static int sonarMockStartDist = 100;
-	public static boolean sonarMockVerbose = false;
+	public static boolean sonarVerbose = false;
     
 	public static boolean tracing         = false;	
 	public static boolean testing         = false;			
@@ -44,6 +45,7 @@ public class DomainSystemConfig {
 			simulation = object.getBoolean("simulation");
 			ledAvailable = object.getBoolean("ledAvailable");
 			sonarAvailable = object.getBoolean("sonarAvailable");
+			radarAvailable = object.getBoolean("radarAvailable");
 
 			webCam = object.getBoolean("webCam");
 
@@ -55,7 +57,7 @@ public class DomainSystemConfig {
 			testing = object.getBoolean("testing");
 			sonarMockDelta = object.getInt("sonarMockDelta");
 			sonarMockStartDist = object.getInt("sonarMockStartDist");
-			sonarMockVerbose = object.getBoolean("sonarMockVerbose");
+			sonarVerbose = object.getBoolean("sonarVerbose");
 
 		} catch (FileNotFoundException | JSONException e) {
  			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );

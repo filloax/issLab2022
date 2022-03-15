@@ -2,6 +2,7 @@
   "simulation": true,
   "sonarAvailable": false,
   "ledAvailable": false,
+  "radarAvailable": false,
 
   "webCam": false,
 
@@ -13,5 +14,5 @@
   "testing": false,
   "sonarMockDelta": -1, 
   "sonarMockStartDist": 20,
-  "sonarMockVerbose": true
+  "sonarVerbose": true
 }

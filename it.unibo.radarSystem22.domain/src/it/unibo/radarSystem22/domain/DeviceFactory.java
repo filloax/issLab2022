@@ -18,4 +18,6 @@ public class DeviceFactory {
     public static IRadarDisplay createRadarDisplay() {
         throw new NotImplementedException("Radar display not implemented yet");
     }
+
+    public static 
 }
