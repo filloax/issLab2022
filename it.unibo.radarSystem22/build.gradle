@@ -24,7 +24,7 @@ dependencies {
     //RADAR (support and GUI)
     implementation name: 'radarPojo'
     //DOMAIN
-    implementation name: 'radarSystem22.domain'
+    implementation name: 'it.unibo.radarSystem22.domain-1.0'
     implementation group: 'org.pushingpixels', name: 'trident', version: '1.3'
 }
 
@@ -41,7 +41,7 @@ eclipse {
     }
 }
 
-mainClassName = 'it.unibo.radarSystem22.main.xxx' //TODO
+mainClassName = 'it.unibo.radarSystem22.main.RadarSystemSprint1Main'
 
 jar {
     from sourceSets.main.allSource

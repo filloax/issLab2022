@@ -26,13 +26,11 @@ public class RadarSystemSprint1Main implements IApplication {
             System.out.println(n);
             terminate();
         };
-        //start
-        controller.start(endFun, 110);
+        controller.start(endFun, DomainSystemConfig.sonarMockStartDist + 10);
     }
 
     public void terminate() {
         BasicUtils.aboutThreads("Before deactivation | ");
-        System.out.println("Sonar still active: " + sonar.isActive());
         sonar.deactivate();
         System.exit(0);
     }
@@ -42,7 +40,8 @@ public class RadarSystemSprint1Main implements IApplication {
             DomainSystemConfig.setTheConfiguration(configFile);
         else { //default
             DomainSystemConfig.testing         = false;
-            DomainSystemConfig.sonarDelay      = 20;
+            DomainSystemConfig.tracing         = true; // cambiare print verbose per non dipendere da qua
+            DomainSystemConfig.sonarDelay      = 200;
             //Su PC
             DomainSystemConfig.simulation      = true;
             DomainSystemConfig.DLIMIT          = 40;
@@ -72,8 +71,9 @@ public class RadarSystemSprint1Main implements IApplication {
         controller = Controller.create(led, sonar, radar);
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new RadarSystemSprint1Main().doJob(null); //su PC
+
         //su Rasp:
         //new RadarSystemSprint1Main().doJob("DomainSystemConfig.json");
     }

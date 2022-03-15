@@ -4,6 +4,8 @@ import it.unibo.radarSystem22.domain.interfaces.IDistance;
 import it.unibo.radarSystem22.domain.interfaces.ILed;
 import it.unibo.radarSystem22.domain.interfaces.IRadarDisplay;
 import it.unibo.radarSystem22.domain.interfaces.ISonar;
+import it.unibo.radarSystem22.domain.utils.BasicUtils;
+import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import it.unibo.radarSystem22.sprint1.usecases.LedAlarmUsecase;
 import it.unibo.radarSystem22.sprint1.usecases.RadarGuiUsecase;
 
@@ -26,21 +28,19 @@ public class Controller {
 
     public void start( ActionFunction endFun, int limit) {
         this.endFun = endFun;
-        sonar.activate();
         activate(limit);
     }
 
     protected void activate( int limit ) {
+        sonar.activate();
         new Thread() {
             public void run() {
-                sonar.activate();
-                if( sonar.isActive() ) {
-                    for(int i = 1; i <= limit; i++) { //meglio per il testing ...
-                        IDistance d = sonar.getDistance();
-                        if (radar != null)
-                            RadarGuiUsecase.doUseCase(radar, d);
-                        LedAlarmUsecase.doUseCase(led,  d );
-                    }
+                for(int i = 1; i <= limit && sonar.isActive(); i++) { //meglio per il testing ...
+                    IDistance d = sonar.getDistance();
+                    if (radar != null)
+                        RadarGuiUsecase.doUseCase(radar, d);
+                    LedAlarmUsecase.doUseCase(led,  d );
+                    BasicUtils.delay(DomainSystemConfig.sonarDelay);
                 }
                 sonar.deactivate();
                 endFun.run("Controller | BYE ");  //CALLBACK

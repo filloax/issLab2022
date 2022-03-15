@@ -56,8 +56,9 @@ public abstract class SonarModel implements ISonar {
 
     @Override
     public void deactivate() {
+        boolean wasStopped = stopped;
         stopped = true;
-        if (DomainSystemConfig.sonarVerbose)
+        if (!wasStopped && DomainSystemConfig.sonarVerbose)
             ColorsOut.out("\tDeactivated sonar", ColorsOut.YELLOW);
     }
 
