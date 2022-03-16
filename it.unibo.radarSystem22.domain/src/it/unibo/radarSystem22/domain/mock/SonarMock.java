@@ -7,13 +7,13 @@ import it.unibo.radarSystem22.domain.utils.ColorsOut;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 
 public class SonarMock extends SonarModel {
-    private int distUpdateDelta = -1;
+    private int distUpdateDelta;
 
     @Override
     protected void sonarSetUp() {
         curVal = new Distance(DomainSystemConfig.sonarMockStartDist);
         distUpdateDelta = DomainSystemConfig.sonarMockDelta;
-        ColorsOut.outappl("[Sonar mock] set up", ColorsOut.CYAN);
+        ColorsOut.outappl("[Sonar mock] set up, delta = " + distUpdateDelta, ColorsOut.CYAN);
     }
 
     @Override

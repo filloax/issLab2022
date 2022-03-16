@@ -12,13 +12,17 @@ import org.json.JSONWriter;
 
 
 public class DomainSystemConfig {
-	public static  boolean simulation    = true;
-	public static boolean ledAvailable = true;
+	public static boolean simulateLed    = true;
+	public static boolean simulateSonar  = true;
+	public static boolean ledAvailable   = true;
 	public static boolean sonarAvailable = true;
 	public static boolean radarAvailable = false;
 
- 	public static  boolean ledGui        = false;
-	public static  boolean radarRemote   = false;
+	public static String deviceScriptFolder = "../device-helpers/";
+
+ 	public static boolean ledGui         = false;
+	public static boolean radarRemote    = false;
+	public static boolean sudoRequired   = false;
 
 	public static int sonarDelay          =  100;     
 	public static int sonarDistanceMax    =  150;     
@@ -26,6 +30,7 @@ public class DomainSystemConfig {
 	public static int sonarMockDelta = -1;
 	public static int sonarMockStartDist = 100;
 	public static boolean sonarVerbose = false;
+	public static boolean execVerbose = false;
     
 	public static boolean tracing         = false;	
 	public static boolean testing         = false;			
@@ -43,12 +48,16 @@ public class DomainSystemConfig {
 			JSONTokener tokener = getTokener(resourceName);
 			JSONObject object = new JSONObject(tokener);
 
-			simulation = object.getBoolean("simulation");
+			simulateLed = object.getBoolean("simulateLed");
+			simulateSonar = object.getBoolean("simulateSonar");
 			ledAvailable = object.getBoolean("ledAvailable");
 			sonarAvailable = object.getBoolean("sonarAvailable");
 			radarAvailable = object.getBoolean("radarAvailable");
 
+			deviceScriptFolder = object.getString("deviceScriptFolder");
+
 			radarRemote = object.getBoolean("radarRemote");
+			sudoRequired = object.getBoolean("sudoRequired");
 
 			sonarObservable = object.getBoolean("sonarObservable");
 			sonarDelay = object.getInt("sonarDelay");
@@ -58,6 +67,7 @@ public class DomainSystemConfig {
 			sonarMockDelta = object.getInt("sonarMockDelta");
 			sonarMockStartDist = object.getInt("sonarMockStartDist");
 			sonarVerbose = object.getBoolean("sonarVerbose");
+			execVerbose = object.getBoolean("execVerbose");
 
 		} catch (JSONException e) {
  			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );
@@ -72,13 +82,17 @@ public class DomainSystemConfig {
 		FileWriter fw = null;
 		JSONObject object = new JSONObject();
 		try {
-			object.put("simulation", simulation);
+			object.put("simulateLed", simulateLed);
+			object.put("simulateSonar", simulateSonar);
 			object.put("ledAvailable", ledAvailable);
 			object.put("sonarAvailable", sonarAvailable);
 			object.put("radarAvailable", radarAvailable);
-			
+
+			object.put("deviceScriptFolder", deviceScriptFolder);
+
 			object.put("radarRemote", radarRemote);
-			
+			object.put("sudoRequired", sudoRequired);
+
 			object.put("sonarObservable", sonarObservable);
 			object.put("sonarDelay", sonarDelay);
 			object.put("sonarDistanceMax", sonarDistanceMax);

@@ -1,5 +1,8 @@
 package it.unibo.radarSystem22.domain.utils;
- 
+
+import java.awt.*;
+import java.io.IOException;
+
 public class BasicUtils {
  	
 	public static void showSystemInfo(){
@@ -35,6 +38,16 @@ public class BasicUtils {
 		ColorsOut.outappl( msg + " curthread=T n=N".replace("T", tname).replace("N", nThreads), ColorsOut.YELLOW );
 	}
 
- 
-	
+	private static Runtime rt = Runtime.getRuntime();
+
+	public static Process runExecutable(String path, boolean sudo) throws IOException {
+		String sudoStr = sudo ? "sudo " : "";
+		if (DomainSystemConfig.execVerbose)
+			ColorsOut.outappl("Running: " + sudoStr + path, ColorsOut.CYAN);
+		return rt.exec(sudoStr + path);
+	}
+
+	public static Process runExecutable(String path) throws IOException {
+		return runExecutable(path, false);
+	}
 }

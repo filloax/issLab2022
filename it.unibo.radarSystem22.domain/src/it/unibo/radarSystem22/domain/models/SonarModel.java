@@ -18,7 +18,7 @@ public abstract class SonarModel implements ISonar {
     }
 
     public static ISonar create() {
-        if (DomainSystemConfig.simulation) {
+        if (DomainSystemConfig.simulateSonar) {
             return createSonarMock();
         } else {
             return createSonarConcrete();

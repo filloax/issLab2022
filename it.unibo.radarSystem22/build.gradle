@@ -41,7 +41,7 @@ eclipse {
     }
 }
 
-mainClassName = 'it.unibo.radarSystem22.main.RadarSystemSprint1Main'
+mainClassName = 'it.unibo.radarSystem22.sprint1.RadarSystemSprint1Main'
 
 jar {
     from sourceSets.main.allSource
@@ -52,7 +52,11 @@ jar {
 distributions {
     main {
         contents {
-            from './RadarSystemConfig.json'
+            from '../RadarSystemConfig.json'
+            from '../DomainSystemConfig.json'
+            into('device-helpers/') {
+                from '../device-helpers'
+            }
         }
     }
 }

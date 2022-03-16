@@ -42,7 +42,8 @@ public class RadarSystemSprint1Main implements IApplication {
             DomainSystemConfig.tracing         = true; // cambiare print verbose per non dipendere da qua
             DomainSystemConfig.sonarDelay      = 200;
             //Su PC
-            DomainSystemConfig.simulation      = true;
+            DomainSystemConfig.simulateLed     = true;
+            DomainSystemConfig.simulateSonar   = true;
             DomainSystemConfig.ledGui          = true;
             DomainSystemConfig.sonarVerbose    = true;
             DomainSystemConfig.radarAvailable  = false;
@@ -80,7 +81,7 @@ public class RadarSystemSprint1Main implements IApplication {
     public Controller getController() { return controller; }
 
     public static void main(String[] args) {
-        new RadarSystemSprint1Main().doJob("DomainSystemConfig.json", "RadarSystemConfig.json"); //su PC
+        new RadarSystemSprint1Main().doJob("../DomainSystemConfig.json", "../RadarSystemConfig.json"); //su PC
 
         //su Rasp:
         //new RadarSystemSprint1Main().doJob("DomainSystemConfig.json");

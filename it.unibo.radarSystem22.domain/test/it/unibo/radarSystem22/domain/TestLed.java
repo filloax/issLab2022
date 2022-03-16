@@ -15,7 +15,7 @@ public class TestLed {
 	  @Before
 	  public void up(){
 		  DomainSystemConfig.setTheConfiguration();
-		  if (DomainSystemConfig.simulation)
+		  if (DomainSystemConfig.simulateLed)
 		  	System.out.println("Led test start: simulation mode");
 		  else
 		    System.out.println("Led test start: real mode");

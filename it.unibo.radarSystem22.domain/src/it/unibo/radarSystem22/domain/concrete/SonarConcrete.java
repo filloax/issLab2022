@@ -2,6 +2,7 @@ package it.unibo.radarSystem22.domain.concrete;
 
 import it.unibo.radarSystem22.domain.Distance;
 import it.unibo.radarSystem22.domain.models.SonarModel;
+import it.unibo.radarSystem22.domain.utils.BasicUtils;
 import it.unibo.radarSystem22.domain.utils.ColorsOut;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 
@@ -13,7 +14,7 @@ public class SonarConcrete extends SonarModel {
     private Process proc;
     private BufferedReader procOutReader;
 
-    private static final String BIN_PATH = "./resources/c/SonarAlone";
+    private static final String BIN_PATH = "c/SonarAlone";
 
     @Override
     protected void sonarSetUp() {
@@ -24,7 +25,7 @@ public class SonarConcrete extends SonarModel {
     public void activate() {
         if (proc == null) {
             try {
-                proc = Runtime.getRuntime().exec("sudo " + BIN_PATH);
+                proc = BasicUtils.runExecutable(DomainSystemConfig.deviceScriptFolder + BIN_PATH, DomainSystemConfig.sudoRequired);
                 procOutReader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -32,6 +33,13 @@ public class SonarConcrete extends SonarModel {
                 return;
             }
         }
+
+        // Leggi riga da sonar per
+        // forzare l'attesa del primo input
+        // prima di eseguire super.activate che
+        // lo farebbe considerare attivo dall'esterno
+        sonarProduce();
+
         super.activate();
     }
 

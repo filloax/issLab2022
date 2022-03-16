@@ -11,7 +11,7 @@ public abstract class LedModel implements ILed {
 
     public static ILed create() {
         ILed led;
-        if (DomainSystemConfig.simulation) {
+        if (DomainSystemConfig.simulateLed) {
             led = createLedMock();
         } else {
             led = createLedConcrete();

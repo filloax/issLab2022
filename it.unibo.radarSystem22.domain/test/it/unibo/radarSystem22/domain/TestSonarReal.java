@@ -16,14 +16,14 @@ public class TestSonarReal {
 
     @Test
     public void testSonar() {
-        int maxDelta = 1;
+        int maxDelta = 5; // tolleranza per rumore
 
         if (!DomainSystemConfig.sonarAvailable) {
             ColorsOut.outappl("Sonar device not available, won't do real sonar test", ColorsOut.ANSI_YELLOW);
             return;
         }
 
-        DomainSystemConfig.simulation = false;
+        DomainSystemConfig.simulateSonar = false;
 
         ColorsOut.outappl("Running REAL sonar test", ColorsOut.ANSI_PURPLE);
         ColorsOut.outappl("Assicurarsi che il sonar sia fissato e " +
@@ -32,13 +32,21 @@ public class TestSonarReal {
         ISonar sonar = DeviceFactory.createSonar();
         SonarTestConsumer testConsumer = new SonarTestConsumer(sonar, maxDelta);
         sonar.activate();
+        System.out.println("Attesa attivazione sonar...");
+        while (!sonar.isActive()) { BasicUtils.delay(50); };
+        System.out.println("Sonar attivo, inizio test");
         testConsumer.start();
         // Se il risultato è coerente per 3 secondi successo, altrimenti termina
         // con errore dentro a SonarTestConsumer
         BasicUtils.delay(2000);
         int lastVal = sonar.getDistance().getVal();
         sonar.deactivate();
-        ColorsOut.outappl("Sonar ha fornito lo stesso output per 2 secondi con successo", ColorsOut.GREEN);
-        System.out.println("Valore finale: " + lastVal);
+
+        if (!testConsumer.isSuccess()) {
+            throw testConsumer.getAssertErr();
+        } else {
+            ColorsOut.outappl("Sonar ha fornito lo stesso output per 2 secondi con successo", ColorsOut.GREEN);
+            System.out.println("Valore finale: " + lastVal);
+        }
     }
 }
