@@ -35,7 +35,7 @@ public class Controller {
         sonar.activate();
         new Thread() {
             public void run() {
-                for(int i = 1; i <= limit && sonar.isActive(); i++) { //meglio per il testing ...
+                for (int i = 1; i <= limit; i++) { //meglio per il testing ...
                     IDistance d = sonar.getDistance();
                     if (radar != null)
                         RadarGuiUsecase.doUseCase(radar, d);

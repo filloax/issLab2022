@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'application'
-        id 'jacoco'
+    id 'jacoco'
 }
 
 version '1.0'
@@ -46,6 +46,16 @@ jar {
         attributes 'Main-Class': "$mainClassName"
     }
 }
+
+
+task copyJarToBin {
+    copy {
+        from 'build/libs'
+        into "../it.unibo.radarSystem22/libs"
+    }
+}
+jar.finalizedBy(copyJarToBin)
+
 distributions {
     main {
         contents {

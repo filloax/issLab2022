@@ -1,11 +1,10 @@
-package it.unibo.radarSystem22.main;
+package it.unibo.radarSystem22.sprint1;
 
 import it.unibo.radarSystem22.domain.DeviceFactory;
 import it.unibo.radarSystem22.domain.interfaces.*;
 import it.unibo.radarSystem22.domain.utils.BasicUtils;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
-import it.unibo.radarSystem22.sprint1.ActionFunction;
-import it.unibo.radarSystem22.sprint1.Controller;
+import it.unibo.radarSystem22.main.IApplication;
 
 public class RadarSystemSprint1Main implements IApplication {
     private ISonar sonar = null;
@@ -19,14 +18,14 @@ public class RadarSystemSprint1Main implements IApplication {
     }
 
     @Override
-    public void doJob(String configFileName) {
-        setup(configFileName);
+    public void doJob(String domainCfgFile, String systemCfgFile) {
+        setup(domainCfgFile, systemCfgFile);
         configure();
         ActionFunction endFun = (n) -> {
             System.out.println(n);
             terminate();
         };
-        controller.start(endFun, DomainSystemConfig.sonarMockStartDist + 10);
+        controller.start(endFun, 1000); // termina tramite Ctrl-c idealmente
     }
 
     public void terminate() {
@@ -35,16 +34,15 @@ public class RadarSystemSprint1Main implements IApplication {
         System.exit(0);
     }
 
-    public void setup(String configFile)  {
-        if( configFile != null )
-            DomainSystemConfig.setTheConfiguration(configFile);
+    public void setup(String domainCfgFile, String systemCfgFile)  {
+        if( domainCfgFile != null )
+            DomainSystemConfig.setTheConfiguration(domainCfgFile);
         else { //default
             DomainSystemConfig.testing         = false;
             DomainSystemConfig.tracing         = true; // cambiare print verbose per non dipendere da qua
             DomainSystemConfig.sonarDelay      = 200;
             //Su PC
             DomainSystemConfig.simulation      = true;
-            DomainSystemConfig.DLIMIT          = 40;
             DomainSystemConfig.ledGui          = true;
             DomainSystemConfig.sonarVerbose    = true;
             DomainSystemConfig.radarAvailable  = false;
@@ -57,6 +55,11 @@ public class RadarSystemSprint1Main implements IApplication {
             //DomainSystemConfig.ledGui        = false;
             //DomainSystemConfig.RadarGuiRemote = true;
         }
+        if (systemCfgFile != null) {
+            RadarSystemConfig.setTheConfiguration(systemCfgFile);
+        } else {
+            RadarSystemConfig.DLIMIT = 40;
+        }
     }
 
     protected void configure() {
@@ -64,15 +67,20 @@ public class RadarSystemSprint1Main implements IApplication {
         sonar = DeviceFactory.createSonar();
         //Dispositivi di Output
         led   = DeviceFactory.createLed();
-        radar = DomainSystemConfig.radarAvailable ?
+        radar = (DomainSystemConfig.radarAvailable && !DomainSystemConfig.radarRemote) ?
             DeviceFactory.createRadarDisplay() : null;
         BasicUtils.aboutThreads("Before Controller creation | ");
         //Controller
         controller = Controller.create(led, sonar, radar);
     }
 
+    public IRadarDisplay getRadarGui() { return radar; }
+    public ILed getLed() { return led; }
+    public ISonar getSonar() { return sonar; }
+    public Controller getController() { return controller; }
+
     public static void main(String[] args) {
-        new RadarSystemSprint1Main().doJob(null); //su PC
+        new RadarSystemSprint1Main().doJob("DomainSystemConfig.json", "RadarSystemConfig.json"); //su PC
 
         //su Rasp:
         //new RadarSystemSprint1Main().doJob("DomainSystemConfig.json");

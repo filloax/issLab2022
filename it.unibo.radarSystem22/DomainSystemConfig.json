@@ -1,0 +1,15 @@
+{
+    "ledAvailable": true,
+    "radarAvailable": false,
+    "radarRemote": false,
+    "simulation": true,
+    "sonarAvailable": true,
+    "sonarDelay": 100,
+    "sonarDistanceMax": 150,
+    "sonarMockDelta": -1,
+    "sonarMockStartDist": 100,
+    "sonarObservable": false,
+    "sonarVerbose": true,
+    "testing": false,
+    "tracing": false
+}

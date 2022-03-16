@@ -20,7 +20,7 @@ public class SonarMock extends SonarModel {
     protected void sonarProduce() {
         if (DomainSystemConfig.testing ) {
             ColorsOut.outappl("[Sonar mock] testing oneshot mode", ColorsOut.MAGENTA);
-            updateDistance(DomainSystemConfig.testingDistance);
+            updateDistance(DomainSystemConfig.sonarMockStartDist);
             deactivate();
         } else {
             int val = getDistance().getVal() + distUpdateDelta;
