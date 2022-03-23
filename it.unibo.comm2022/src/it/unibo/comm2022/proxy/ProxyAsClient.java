@@ -47,7 +47,7 @@ public class ProxyAsClient {
 				//ColorsOut.out(name+"  | ProxyAsClient connect MQTT entry=" + entry );
 				//conn = MqttConnection.getSupport();					
  				break;
-			}	
+			}
 			default :{
 				ColorsOut.outerr(name + " | Protocol unknown");
 			}

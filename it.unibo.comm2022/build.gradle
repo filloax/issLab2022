@@ -38,6 +38,14 @@ sourceSets {
     test.java.srcDirs += 'test'
 }
 
+task copyJarToBin {
+    copy {
+        from 'build/libs'
+        into "../unibolibs"
+    }
+}
+jar.finalizedBy(tasks.findByPath("copyJarToBin"))
+
 //Avoid duplication of src in Eclipse
 eclipse {
     classpath {

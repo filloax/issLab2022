@@ -21,6 +21,7 @@ public class Sprint1Test {
             sys.configure();
             DomainSystemConfig.testing    		= true;
             DomainSystemConfig.tracing    		= true;
+            RadarSystemConfig.sonarObservable   = false; // no observable, meglio per 1shot
         } catch (Exception e) {
             fail("setup ERROR " + e.getMessage() );
         }
@@ -59,7 +60,7 @@ public class Sprint1Test {
             this.setDone(true); // per girare intorno al requisito di final
         };
 
-        sys.getController().start( endFun, 1 ); //one-shot
+        sys.getController().start( endFun, 2 ); // più volte anche se 1shot per assicurarsi aggiornamento distanza
 
         while(!done) {
             BasicUtils.delay(100); //give time to see ...

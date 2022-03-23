@@ -1,10 +1,11 @@
 {
     "DLIMIT": 40,
-    "sonarObservable": false,
+    "sonarObservable": true,
     "radarGuiRemote": true,
     "serverPort": 8023,	
     "hostAddr": "localhost",
     "raspAddr": "192.168.1.15",
     "ledPort": 8040,	
-    "sonarPort": 8041	
+    "sonarPort": 8041,
+    "sonarObserverPort": 8042
 }

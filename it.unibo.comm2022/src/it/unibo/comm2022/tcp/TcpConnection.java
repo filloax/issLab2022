@@ -72,6 +72,10 @@ private Socket socket;
 		}
 	}
 
-
+	@Override
+	public String toString() {
+		return socket.getLocalAddress() + ":" + socket.getLocalPort() + "->"
+				+ socket.getInetAddress() + ":" + socket.getPort();
+	}
 
 }

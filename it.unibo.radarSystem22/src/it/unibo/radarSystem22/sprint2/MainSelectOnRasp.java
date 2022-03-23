@@ -1,6 +1,7 @@
 package it.unibo.radarSystem22.sprint2;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
@@ -19,21 +20,21 @@ public class MainSelectOnRasp {
 		}
  	}
 	public void doChoice() {
+		programs.put("1", new RadarSystemSprint1Main() );
+		programs.put("2", new RadarSysSprint2ControllerOnRaspMain());
+		programs.put("3", new RadarSysSprint2aDevicesOnRaspMain());
+		String i = "";
+		outMenu();
+		ColorsOut.outappl(">>>   ", ColorsOut.ANSI_PURPLE);
+		BufferedReader inputr = new BufferedReader(new InputStreamReader(System.in));
 		try {
-			programs.put("1", new RadarSystemSprint1Main() );				 
-			programs.put("2", new RadarSysSprint2ControllerOnRaspMain());  	 
-			programs.put("3", new RadarSysSprint2aDevicesOnRaspMain());  	 
-  			String i = "";
-			outMenu();
-			ColorsOut.outappl(">>>   ", ColorsOut.ANSI_PURPLE);
- 			BufferedReader inputr = new BufferedReader(new InputStreamReader(System.in));
-			i =  inputr.readLine();
- 			programs.get( i ).doJob("DomainSystemConfig.json","RadarSystemConfig.json");
- 		} catch ( Exception e) {
-			 ColorsOut.outerr("ERROR:" + e.getMessage() );
+			i = inputr.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
 		}
-		
-	}
+		programs.get(i).doJob("DomainSystemConfig.json","RadarSystemConfig.json");
+}
 	public static void main( String[] args) throws Exception {
 		ColorsOut.outappl("---------------------------------------------------", ColorsOut.BLUE);
 		ColorsOut.outappl("MainSelectOnRasp: this application uses Config Files", ColorsOut.BLUE);

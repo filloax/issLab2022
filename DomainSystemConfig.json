@@ -1,7 +1,7 @@
 {
     "deviceScriptFolder": "../device-helpers/",
     "ledAvailable": false,
-    "radarAvailable": false,
+    "radarAvailable": true,
     "radarRemote": false,
     "simulateLed": true,
     "simulateSonar": true,
@@ -16,5 +16,5 @@
     "execVerbose": true,
     "sudoRequired": false,
     "testing": false,
-    "tracing": false
+    "tracing": true
 }

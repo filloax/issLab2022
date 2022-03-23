@@ -9,11 +9,13 @@ import it.unibo.radarSystem22.domain.interfaces.ILed;
 import it.unibo.radarSystem22.domain.interfaces.IRadarDisplay;
 import it.unibo.radarSystem22.domain.interfaces.ISonar;
 import it.unibo.radarSystem22.domain.utils.BasicUtils;
+import it.unibo.radarSystem22.domain.utils.ColorsOut;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import it.unibo.radarSystem22.sprint1.ActionFunction;
 import it.unibo.radarSystem22.sprint1.Controller;
 import it.unibo.radarSystem22.sprint1.RadarSystemConfig;
 import it.unibo.radarSystem22.sprint2a.proxy.LedProxyAsClient;
+import it.unibo.radarSystem22.sprint2a.proxy.SonarObserverServer;
 import it.unibo.radarSystem22.sprint2a.proxy.SonarProxyAsClient;
 
 /*
@@ -58,19 +60,32 @@ public class RadarSysSprint2aControllerOnPcMain implements IApplication{
 
 			CommSystemConfig.tracing = false;
 		}
-		// observer meno conveniente con proxy
-		RadarSystemConfig.sonarObservable = false;
 	}
 	
 	public void configure(  )  {	
  		ProtocolType protocol = ProtocolType.tcp;
-		
- 		led = new LedProxyAsClient("ledPxy",
- 				RadarSystemConfig.raspAddr, Integer.toString(RadarSystemConfig.ledPort), protocol );
-  		sonar = new SonarProxyAsClient("sonarPxy",
-  				RadarSystemConfig.raspAddr, Integer.toString(RadarSystemConfig.sonarPort), protocol);
-  		radar = DeviceFactory.createRadarDisplay();
- 
+
+		SonarProxyAsClient sonarProxy = new SonarProxyAsClient("sonarPxy",
+				RadarSystemConfig.raspAddr, Integer.toString(RadarSystemConfig.sonarPort), protocol);
+
+		// Observable sonar: questo è un server che ascolta agggiornamenti dal RasPi
+		// e ingloba il sonar normale per attivazione e disattivazione
+		if (RadarSystemConfig.sonarObservable) {
+			ColorsOut.out("Using observable sonar", ColorsOut.CYAN);
+			sonar = new SonarObserverServer("sonarObserverServer", RadarSystemConfig.sonarObserverPort, sonarProxy);
+		// Sonar normale: questo è un client che richiede informazioni dal RasPi
+		} else {
+			ColorsOut.out("Connecting sonar client...", ColorsOut.BLUE);
+			sonar = sonarProxy;
+		}
+
+		ColorsOut.out("Connecting led client...", ColorsOut.BLUE);
+		led = new LedProxyAsClient("ledPxy",
+				RadarSystemConfig.raspAddr, Integer.toString(RadarSystemConfig.ledPort), protocol );
+
+		radar = (DomainSystemConfig.radarAvailable && !DomainSystemConfig.radarRemote) ?
+				DeviceFactory.createRadarDisplay() : null;
+
 	    //Controller
 	    controller = Controller.create(led, sonar, radar);	 		
 	}

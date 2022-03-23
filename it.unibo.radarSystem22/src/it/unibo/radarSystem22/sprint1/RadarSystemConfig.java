@@ -14,8 +14,9 @@ public class RadarSystemConfig {
 	public static boolean sonarObservable = true;
 	public static boolean radarGuiRemote = false;
 	public static int serverPort          = 8023;
-	public static int ledPort          = 8040;
+	public static int ledPort            = 8040;
 	public static int sonarPort          = 8041;
+	public static int sonarObserverPort  = 8042;
 	public static String hostAddr         = "localhost";
 	public static String raspAddr         = "192.168.1.15";
 
@@ -37,6 +38,7 @@ public class RadarSystemConfig {
 			serverPort = object.getInt("serverPort");
 			ledPort = object.getInt("ledPort");
 			sonarPort = object.getInt("sonarPort");
+			sonarObserverPort = object.getInt("sonarObserverPort");
 			hostAddr = object.getString("hostAddr");
 			raspAddr = object.getString("raspAddr");
 
@@ -59,6 +61,7 @@ public class RadarSystemConfig {
 			object.put("serverPort", serverPort);
 			object.put("ledPort", ledPort);
 			object.put("sonarPort", sonarPort);
+			object.put("sonarObserverPort", sonarObserverPort);
 			object.put("hostAddr", hostAddr);
 			object.put("raspAddr", raspAddr);
 		} catch (JSONException e) {
