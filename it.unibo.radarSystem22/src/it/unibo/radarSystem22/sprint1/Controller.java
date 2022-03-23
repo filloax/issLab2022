@@ -1,9 +1,7 @@
 package it.unibo.radarSystem22.sprint1;
 
-import it.unibo.radarSystem22.domain.interfaces.IDistance;
-import it.unibo.radarSystem22.domain.interfaces.ILed;
-import it.unibo.radarSystem22.domain.interfaces.IRadarDisplay;
-import it.unibo.radarSystem22.domain.interfaces.ISonar;
+import it.unibo.radarSystem22.domain.SonarObserverLambda;
+import it.unibo.radarSystem22.domain.interfaces.*;
 import it.unibo.radarSystem22.domain.utils.BasicUtils;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import it.unibo.radarSystem22.sprint1.usecases.LedAlarmUsecase;
@@ -33,18 +31,34 @@ public class Controller {
 
     protected void activate( int limit ) {
         sonar.activate();
-        new Thread() {
-            public void run() {
-                for (int i = 1; i <= limit; i++) { //meglio per il testing ...
-                    IDistance d = sonar.getDistance();
-                    if (radar != null)
-                        RadarGuiUsecase.doUseCase(radar, d);
-                    LedAlarmUsecase.doUseCase(led,  d );
-                    BasicUtils.delay(DomainSystemConfig.sonarDelay);
+        if (RadarSystemConfig.sonarObservable) {
+            if (!(sonar instanceof ISonarObservable))
+                throw new IllegalArgumentException("Controller richiede SonarObservable con cfg.sonarObservable=true");
+            ISonarObservable sonarObservable = (ISonarObservable) sonar;
+            sonarObservable.subscribe(SonarObserverLambda.make()
+                    .setUpdate(d -> {
+                        if (radar != null)
+                            RadarGuiUsecase.doUseCase(radar, d);
+                        LedAlarmUsecase.doUseCase(led,  d );
+                    })
+                    .setDeactivated(() -> { endFun.run("Controller | BYE "); })
+            );
+            BasicUtils.delay(limit * DomainSystemConfig.sonarDelay);
+            sonar.deactivate();
+        } else {
+            new Thread() {
+                public void run() {
+                    for (int i = 1; i <= limit; i++) { //meglio per il testing ...
+                        IDistance d = sonar.getDistance();
+                        if (radar != null)
+                            RadarGuiUsecase.doUseCase(radar, d);
+                        LedAlarmUsecase.doUseCase(led,  d );
+                        BasicUtils.delay(DomainSystemConfig.sonarDelay);
+                    }
+                    sonar.deactivate();
+                    endFun.run("Controller | BYE ");  //CALLBACK
                 }
-                sonar.deactivate();
-                endFun.run("Controller | BYE ");  //CALLBACK
-            }
-        }.start();
+            }.start();
+        }
     }
 }

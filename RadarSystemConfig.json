@@ -1,1 +1,10 @@
-{"DLIMIT": 40}
+{
+    "DLIMIT": 40,
+    "sonarObservable": false,
+    "radarGuiRemote": true,
+    "serverPort": 8023,	
+    "hostAddr": "localhost",
+    "raspAddr": "192.168.1.15",
+    "ledPort": 8040,	
+    "sonarPort": 8041	
+}

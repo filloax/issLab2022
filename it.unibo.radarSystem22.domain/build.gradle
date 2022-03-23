@@ -51,7 +51,7 @@ jar {
 task copyJarToBin {
     copy {
         from 'build/libs'
-        into "../it.unibo.radarSystem22/libs"
+        into "../unibolibs"
     }
 }
 jar.finalizedBy(copyJarToBin)

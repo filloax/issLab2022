@@ -12,8 +12,10 @@ import org.json.JSONWriter;
 
 
 public class DomainSystemConfig {
-	public static boolean simulateLed    = true;
-	public static boolean simulateSonar  = true;
+	// simulation false -> controllo simulateX specifici
+	public static boolean simulation     = true;
+	public static boolean simulateLed    = false;
+	public static boolean simulateSonar  = false;
 	public static boolean ledAvailable   = true;
 	public static boolean sonarAvailable = true;
 	public static boolean radarAvailable = false;
@@ -48,6 +50,7 @@ public class DomainSystemConfig {
 			JSONTokener tokener = getTokener(resourceName);
 			JSONObject object = new JSONObject(tokener);
 
+			simulation = object.getBoolean("simulation");
 			simulateLed = object.getBoolean("simulateLed");
 			simulateSonar = object.getBoolean("simulateSonar");
 			ledAvailable = object.getBoolean("ledAvailable");
@@ -82,6 +85,7 @@ public class DomainSystemConfig {
 		FileWriter fw = null;
 		JSONObject object = new JSONObject();
 		try {
+			object.put("simulation", simulation);
 			object.put("simulateLed", simulateLed);
 			object.put("simulateSonar", simulateSonar);
 			object.put("ledAvailable", ledAvailable);
@@ -101,6 +105,7 @@ public class DomainSystemConfig {
 			object.put("sonarMockDelta", sonarMockDelta);
 			object.put("sonarMockStartDist", sonarMockStartDist);
 			object.put("sonarVerbose", sonarVerbose);
+			object.put("execVerbose", execVerbose);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

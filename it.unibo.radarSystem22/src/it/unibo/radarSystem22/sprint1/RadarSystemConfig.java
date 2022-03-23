@@ -10,8 +10,14 @@ import org.json.*;
 
 
 public class RadarSystemConfig {
-	public static int DLIMIT              =  15;
-
+	public static int DLIMIT              =  30;
+	public static boolean sonarObservable = true;
+	public static boolean radarGuiRemote = false;
+	public static int serverPort          = 8023;
+	public static int ledPort          = 8040;
+	public static int sonarPort          = 8041;
+	public static String hostAddr         = "localhost";
+	public static String raspAddr         = "192.168.1.15";
 
 	public static void setTheConfiguration(  ) {
 		setTheConfiguration("../RadarSystemConfig.json");
@@ -26,6 +32,13 @@ public class RadarSystemConfig {
 			JSONObject object = new JSONObject(tokener);
 
 			DLIMIT = object.getInt("DLIMIT");
+			sonarObservable = object.getBoolean("sonarObservable");
+			radarGuiRemote = object.getBoolean("radarGuiRemote");
+			serverPort = object.getInt("serverPort");
+			ledPort = object.getInt("ledPort");
+			sonarPort = object.getInt("sonarPort");
+			hostAddr = object.getString("hostAddr");
+			raspAddr = object.getString("raspAddr");
 
 		} catch (JSONException e) {
 			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );
@@ -41,6 +54,13 @@ public class RadarSystemConfig {
 		JSONObject object = new JSONObject();
 		try {
 			object.put("DLIMIT", DLIMIT);
+			object.put("sonarObservable", sonarObservable);
+			object.put("radarGuiRemote", radarGuiRemote);
+			object.put("serverPort", serverPort);
+			object.put("ledPort", ledPort);
+			object.put("sonarPort", sonarPort);
+			object.put("hostAddr", hostAddr);
+			object.put("raspAddr", raspAddr);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

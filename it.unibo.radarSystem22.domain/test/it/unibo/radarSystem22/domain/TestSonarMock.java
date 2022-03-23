@@ -14,6 +14,7 @@ public class TestSonarMock {
     @Before
     public void up() {
         DomainSystemConfig.setTheConfiguration();
+        DomainSystemConfig.sonarDelay = 10;
     }
 
     @Test
@@ -22,6 +23,7 @@ public class TestSonarMock {
 
         DomainSystemConfig.simulateSonar = true;
         DomainSystemConfig.sonarMockDelta = -1;
+        DomainSystemConfig.sonarMockStartDist = 30;
 
         ColorsOut.outappl("Running SIMULATION sonar test mode", ColorsOut.ANSI_PURPLE);
 
@@ -45,6 +47,7 @@ public class TestSonarMock {
 
         DomainSystemConfig.simulateSonar = true;
         DomainSystemConfig.sonarMockDelta = -5;
+        DomainSystemConfig.sonarMockStartDist = 10;
 
         ColorsOut.outappl("Running SIMULATION sonar test mode (to intentionally fail)", ColorsOut.ANSI_PURPLE);
 
