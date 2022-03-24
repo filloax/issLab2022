@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5d8db28-ae7e-4125-9966-0ef5a23323f5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../DomainSystemConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DomainSystemConfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RadarSystemConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../RadarSystemConfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.comm2022/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.comm2022/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.comm2022/src/it/unibo/comm2022/proxy/ProxyAsClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.comm2022/src/it/unibo/comm2022/proxy/ProxyAsClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.comm2022/src/it/unibo/comm2022/tcp/TcpConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.comm2022/src/it/unibo/comm2022/tcp/TcpConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/models/SonarModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/models/SonarModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2/MainSelectOnRasp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2/MainSelectOnRasp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2a/handlers/SonarApplHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2a/handlers/SonarApplHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2a/main/devicesOnRasp/RadarSysSprint2aControllerOnPcMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2a/main/devicesOnRasp/RadarSysSprint2aControllerOnPcMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2a/main/devicesOnRasp/RadarSysSprint2aDevicesOnRaspMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2a/main/devicesOnRasp/RadarSysSprint2aDevicesOnRaspMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/it/unibo/radarSystem22/sprint1/Sprint1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/it/unibo/radarSystem22/sprint1/Sprint1Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../unibolibs/it.unibo.comm2022-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../unibolibs/it.unibo.comm2022-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../unibolibs/it.unibo.radarSystem22.domain-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../unibolibs/it.unibo.radarSystem22.domain-1.0.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +74,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -97,8 +84,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2/main/sysOnRasp/RadarSysSprint2ControllerOnRaspMain.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemConfig.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2/MainSelectOnRasp.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemConfig.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemSprint1Main.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -115,6 +102,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint3/main" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../it.unibo.comm2022" />
   </component>
   <component name="RecentsManager">
@@ -124,13 +112,26 @@
       <recent name="it.unibo.comm2022.proxy" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RadarSysSprint2aControllerOnPcMain">
+  <component name="RunManager" selected="Gradle.TestEnablers">
     <configuration name="RadarSysSprint2aControllerOnPcMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.unibo.radarSystem22.sprint2a.main.devicesOnRasp.RadarSysSprint2aControllerOnPcMain" />
       <module name="it.unibo.radarSystem22.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="it.unibo.radarSystem22.sprint2a.main.devicesOnRasp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RadarSysSprint3DevicesOnRaspMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.unibo.radarSystem22.sprint3.main.devicesOnRasp.RadarSysSprint3DevicesOnRaspMain" />
+      <module name="it.unibo.radarSystem22.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.unibo.radarSystem22.sprint3.main.devicesOnRasp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,29 +153,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;it.unibo.radarSystem22.sprint2a.main.devicesOnRasp.Sprint2aTestObserver&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Sprint2aTestObserver.testFarDistance" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;it.unibo.radarSystem22.sprint2a.main.devicesOnRasp.Sprint2aTestObserver.testFarDistance&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -207,7 +185,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Sprint2aTest.testNearDistance" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestEnablers" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -220,7 +198,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;it.unibo.radarSystem22.sprint2a.main.devicesOnRasp.Sprint2aTest.testNearDistance&quot;" />
+            <option value="&quot;it.unibo.radarSystem22.sprint3.TestEnablers&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -232,11 +210,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestEnablers" />
+        <item itemvalue="Application.RadarSysSprint3DevicesOnRaspMain" />
         <item itemvalue="Application.RadarSysSprint2aControllerOnPcMain" />
         <item itemvalue="Gradle.Sprint2aTestObserver" />
         <item itemvalue="Gradle.Sprint2aTestObserver.testNearDistance" />
-        <item itemvalue="Gradle.Sprint2aTestObserver.testFarDistance" />
-        <item itemvalue="Gradle.Sprint2aTest.testNearDistance" />
       </list>
     </recent_temporary>
   </component>
