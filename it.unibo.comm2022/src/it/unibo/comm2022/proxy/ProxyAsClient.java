@@ -5,11 +5,12 @@ import it.unibo.comm2022.ProtocolType;
 import it.unibo.comm2022.interfaces.Interaction2021;
 import it.unibo.comm2022.utils.ColorsOut;
 import it.unibo.comm2022.tcp.TcpClientSupport;
+import it.unibo.comm2022.udp.giannatempo.UdpClientSupport;
  
 public class ProxyAsClient {
-	private Interaction2021 conn;
-	protected String name ;		//could be a uri
-	protected ProtocolType protocol ;
+private Interaction2021 conn; 
+protected String name ;		//could be a uri
+protected ProtocolType protocol ;
 
 /*
  * Realizza la connessione di tipo Interaction2021 (concetto astratto)
@@ -37,6 +38,11 @@ public class ProxyAsClient {
 				ColorsOut.out(name + " |  setConnection "  + conn, ColorsOut.BLUE );		
 				break;
 			}
+			case udp : {
+				int port = Integer.parseInt(entry);
+ 				conn = UdpClientSupport.connect(host,  port );  
+				break;
+			}
 			case coap : {
  				//conn = new CoapConnection( host,  entry );
 				break;
@@ -47,7 +53,7 @@ public class ProxyAsClient {
 				//ColorsOut.out(name+"  | ProxyAsClient connect MQTT entry=" + entry );
 				//conn = MqttConnection.getSupport();					
  				break;
-			}
+			}	
 			default :{
 				ColorsOut.outerr(name + " | Protocol unknown");
 			}
@@ -83,7 +89,7 @@ public class ProxyAsClient {
 	public void close() {
 		try {
 			conn.close();
-			ColorsOut.out(name + " |  CLOSED " + conn  );
+			ColorsOut.out(name + " |  CLOSED " + conn   );
 		} catch (Exception e) {
 			ColorsOut.outerr( name+"  | sendRequestOnConnection ERROR=" + e.getMessage()  );		}
 	}

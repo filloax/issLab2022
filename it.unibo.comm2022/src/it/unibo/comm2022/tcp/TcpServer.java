@@ -2,17 +2,16 @@ package it.unibo.comm2022.tcp;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import it.unibo.comm2022.interfaces.IApplMsgHandler;
 import it.unibo.comm2022.interfaces.Interaction2021;
 import it.unibo.comm2022.utils.ColorsOut;
 import it.unibo.comm2022.utils.CommSystemConfig;
   
 public class TcpServer extends Thread{
-	private ServerSocket serversock;
-	protected IApplMsgHandler userDefHandler;
-	protected String name;
-	protected boolean stopped = true;
+private ServerSocket serversock;
+protected IApplMsgHandler userDefHandler;
+protected String name;
+protected boolean stopped = true;
 
  	public TcpServer( String name, int port,  IApplMsgHandler userDefHandler   ) {
 		super(name);
