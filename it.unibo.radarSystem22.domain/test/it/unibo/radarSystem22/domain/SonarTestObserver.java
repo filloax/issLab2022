@@ -1,10 +1,8 @@
 package it.unibo.radarSystem22.domain;
 
 import it.unibo.radarSystem22.domain.interfaces.IDistance;
-import it.unibo.radarSystem22.domain.interfaces.ISonar;
 import it.unibo.radarSystem22.domain.interfaces.ISonarObservable;
 import it.unibo.radarSystem22.domain.interfaces.ISonarObserver;
-import it.unibo.radarSystem22.domain.utils.BasicUtils;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 
 import java.util.Optional;
