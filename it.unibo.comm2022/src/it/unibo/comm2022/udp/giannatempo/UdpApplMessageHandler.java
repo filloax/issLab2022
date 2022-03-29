@@ -29,7 +29,9 @@ public UdpApplMessageHandler(  IApplMsgHandler handler, Interaction2021 conn ) {
 			    if( msg == null ) {
 			    	conn.close();
 			    	break;
-			    } else{ handler.elaborate( msg, conn ); }
+			    } else{
+					handler.elaborate( msg, conn );
+				}
 			}
 			ColorsOut.out(name + " | BYE"   );
 		}catch( Exception e) {

@@ -12,8 +12,8 @@ import it.unibo.radarSystem22.domain.interfaces.*;
 import it.unibo.radarSystem22.domain.utils.BasicUtils;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import it.unibo.radarSystem22.sprint1.RadarSystemConfig;
-import it.unibo.radarSystem22.sprint2a.handlers.LedApplHandler;
-import it.unibo.radarSystem22.sprint2a.handlers.SonarApplHandler;
+import it.unibo.radarSystem22.sprint3.handlers.LedApplHandler;
+import it.unibo.radarSystem22.sprint3.handlers.SonarApplHandler;
 
 
 /*
@@ -55,7 +55,7 @@ public class RadarSysSprint3DevicesOnRaspMain implements IApplication{
 
     }
     protected void configure() {
-        ProtocolType protocol = ProtocolType.tcp;
+        ProtocolType protocol = ProtocolType.udp;
         led                   = DeviceFactory.createLed();
         IApplMsgHandler ledh  = LedApplHandler.create("ledh", led);
         sonar      = DeviceFactory.createSonar();

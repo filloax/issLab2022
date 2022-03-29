@@ -55,9 +55,9 @@ public class RadarSysSprint3ControllerOnPcMain implements IApplication{
 
     public void configure(  )  {
         led    		= new LedProxyAsClient("ledPxy",
-                RadarSystemConfig.raspAddr, ""+RadarSystemConfig.ledPort );
+                RadarSystemConfig.raspAddr, ""+RadarSystemConfig.ledPort, ProtocolType.udp);
         sonar  		= new SonarProxyAsClient("sonarPxy",
-                RadarSystemConfig.raspAddr, ""+RadarSystemConfig.sonarPort );
+                RadarSystemConfig.raspAddr, ""+RadarSystemConfig.sonarPort, ProtocolType.udp);
         radar  		= DeviceFactory.createRadarDisplay();
 
         //Controller

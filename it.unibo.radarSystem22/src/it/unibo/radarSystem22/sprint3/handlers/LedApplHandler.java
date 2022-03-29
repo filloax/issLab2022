@@ -28,7 +28,7 @@ public class LedApplHandler extends ApplMsgHandler {
         ColorsOut.out(name + " | elaborate message=" + message + " conn=" + conn , ColorsOut.GREEN);
 
         try {
-            String result = ledInterpr.elaborate(message);
+            String result = ledInterpr.elaborate(message.trim());
             if (!result.startsWith("done: ")) {
                 sendMsgToClient(result, conn);
             }

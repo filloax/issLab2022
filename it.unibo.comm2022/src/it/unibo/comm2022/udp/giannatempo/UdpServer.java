@@ -52,7 +52,7 @@ protected boolean stopped = true;
 	            	connectionsMap.put(client, conn);
 			 		//Create HERE a message handler on the connection !!!
 			 		new UdpApplMessageHandler( userDefHandler, conn );		 	 		
-            }else {
+				} else {
 	            	 ColorsOut.outappl("UdpServer | CONNECTION ALREADY SET with " + client, ColorsOut.GREEN   ); 
 	            }
 	            conn.handle(packet);		 

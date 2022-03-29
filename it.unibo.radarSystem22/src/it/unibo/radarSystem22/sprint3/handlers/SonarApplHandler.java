@@ -30,7 +30,7 @@ public class SonarApplHandler extends ApplMsgHandler  {
         ColorsOut.out(name+ " | elaborate " + message + " conn=" + conn, ColorsOut.BLUE);
 
         try {
-            String result = sonarIntepr.elaborate(message);
+            String result = sonarIntepr.elaborate(message.trim());
             if (!result.startsWith("done: ")) {
                 sendMsgToClient(result, conn);
             }
