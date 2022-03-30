@@ -19,19 +19,26 @@ public class StaticConfig {
             FileReader reader = new FileReader(resourceName);
             FileWriter writer = null;
             try {
-                writer = new FileWriter(resourceName);
-                setTheConfiguration(clazz, reader, writer);
+                JSONTokener tokener = new JSONTokener(reader);
+                JSONObject object = new JSONObject(tokener);
+
+                boolean changed = setFields(clazz, object);
+                if (changed) {
+                    writer = new FileWriter(resourceName);
+                    saveConfigFile(object, writer);
+                }
+
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             } finally {
                 if (writer != null) {
-                    /*
                     try {
                         writer.close();
                     } catch(IOException e) {
                         e.printStackTrace();
                     }
-                    */
                 }
             }
 
@@ -41,7 +48,8 @@ public class StaticConfig {
         }
     }
 
-    // Per testing
+    // Per testing, se usato con FileWriter sovrascriverà il file di configurazione
+    // prima della lettura
     public static void setTheConfiguration(Class clazz, Reader reader, Writer writer) {
         //Nella distribuzione resourceName è in una dir che include la bin
         try {
@@ -49,9 +57,9 @@ public class StaticConfig {
             JSONObject object = new JSONObject(tokener);
 
             boolean changed = setFields(clazz, object);
-            // if (changed) {
+            if (changed) {
                 saveConfigFile(object, writer);
-            // }
+            }
 
         } catch (JSONException e) {
             ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );

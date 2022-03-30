@@ -1,6 +1,8 @@
 {
     "deviceScriptFolder": "../device-helpers/",
+    "execVerbose": true,
     "ledAvailable": false,
+    "ledGui": false,
     "radarAvailable": true,
     "radarRemote": false,
     "simulateLed": true,
@@ -13,7 +15,6 @@
     "sonarMockStartDist": 100,
     "sonarObservable": true,
     "sonarVerbose": true,
-    "execVerbose": true,
     "sudoRequired": false,
     "testing": false,
     "tracing": true

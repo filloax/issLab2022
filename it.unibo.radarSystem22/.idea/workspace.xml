@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5d8db28-ae7e-4125-9966-0ef5a23323f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/utils/StaticConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/ConfigForTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/TestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/utils/DomainSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/utils/DomainSystemConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/SonarTestObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/SonarTestObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/TestLed.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/TestLed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/utils/StaticConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/utils/StaticConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22/main/RadarUsageMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../unibolibs/it.unibo.radarSystem22.domain-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../unibolibs/it.unibo.radarSystem22.domain-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../unibolibs/it.unibo.comm2022-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../unibolibs/it.unibo.comm2022-1.0.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,8 +75,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2/main/sysOnRasp/RadarSysSprint2ControllerOnRaspMain.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2/MainSelectOnRasp.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemConfig.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint2/MainSelectOnRasp.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/it/unibo/radarSystem22/sprint1/RadarSystemSprint1Main.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -113,7 +106,7 @@
       <recent name="it.unibo.comm2022.proxy" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestLed">
+  <component name="RunManager" selected="Application.RadarSystemSprint1Main">
     <configuration name="RadarSystemSprint1Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.unibo.radarSystem22.sprint1.RadarSystemSprint1Main" />
       <module name="it.unibo.radarSystem22.main" />
@@ -127,7 +120,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestLed" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestLed (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/../it.unibo.radarSystem22.domain" />
@@ -171,27 +164,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="it.unibo.radarSystem22.domain [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/../it.unibo.radarSystem22.domain" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="it.unibo.radarSystem22.domain [copyJarToBin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -213,13 +185,34 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="it.unibo.radarSystem22.domain [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../it.unibo.radarSystem22.domain" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestLed" />
+        <item itemvalue="Gradle.it.unibo.radarSystem22.domain [copyJarToBin]" />
+        <item itemvalue="Gradle.it.unibo.radarSystem22.domain [jar]" />
+        <item itemvalue="Gradle.TestLed (1)" />
         <item itemvalue="Application.RadarSystemSprint1Main" />
         <item itemvalue="Gradle.it.unibo.radarSystem22 [build]" />
-        <item itemvalue="Gradle.it.unibo.radarSystem22.domain [copyJarToBin]" />
-        <item itemvalue="Gradle.it.unibo.radarSystem22.domain [build]" />
       </list>
     </recent_temporary>
   </component>
