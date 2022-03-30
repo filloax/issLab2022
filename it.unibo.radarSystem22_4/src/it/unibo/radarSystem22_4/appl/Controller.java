@@ -17,7 +17,7 @@ private ActionFunction endFun;
 		return new Controller( led,  sonar, radar  );
 	}
 	public static Controller create(ILed led, ISonar sonar ) {
-		return new Controller( led,  sonar, DeviceFactory.createRadarGui()  );
+		return new Controller( led,  sonar, DeviceFactory.createRadarDisplay()  );
 	}
 	
 	private Controller( ILed led, ISonar sonar,IRadarDisplay radar ) {

@@ -2,6 +2,7 @@ package it.unibo.radarSystem22_4.appl.main;
 
 import it.unibo.radarSystem22.domain.*;
 import it.unibo.radarSystem22.domain.interfaces.*;
+import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import it.unibo.radarSystem22_4.appl.ActionFunction;
 import it.unibo.radarSystem22_4.appl.Controller;
 import it.unibo.radarSystem22_4.appl.RadarSystemConfig;
@@ -33,7 +34,9 @@ public class RadarSystemMainWithCtxOnPc implements IApplication{
 		RadarSystemConfig.DLIMIT           = 80;
 		RadarSystemConfig.tracing          = true;
 		RadarSystemConfig.ctxServerPort    = 8756;
-		CommSystemConfig.protcolType = ProtocolType.udp;
+		CommSystemConfig.protcolType = ProtocolType.tcp;
+		DomainSystemConfig.simulation = true;
+		DomainSystemConfig.sonarVerbose = true;
 	}
 	
 	protected void configure() {		

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import it.unibo.radarSystem22.domain.utils.StaticConfig;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -31,35 +32,8 @@ public class RadarSystemConfig {
 		setTheConfiguration("../RadarSystemConfig.json");
 	}
 	
-	public static void setTheConfiguration( String resourceName ) {
-		//Nella distribuzione resourceName è in una dir che include la bin  
-		FileInputStream fis = null;
-		try {
-			ColorsOut.out("%%% setTheConfiguration from file:" + resourceName);
-			if(  fis == null ) {
- 				 fis = new FileInputStream(new File(resourceName));
-			}
-//	        JSONTokener tokener = new JSONTokener(fis);
-			Reader reader       = new InputStreamReader(fis);
-			JSONTokener tokener = new JSONTokener(reader);      
-	        JSONObject object   = new JSONObject(tokener);
-	 		
-   	        tracing          = object.getBoolean("tracing");
-	        testing          = object.getBoolean("testing");
-	        RadarGuiRemote   = object.getBoolean("RadarGuiRemote");
-	        DLIMIT           = object.getInt("DLIMIT");	
- //Aggiunte dello SPRINT4 	        
-	        ctxServerPort    = object.getInt("ctxServerPort");
-	        
-	        switch( object.getString("protocolType") ) {
-		        case "tcp"  : protcolType = ProtocolType.tcp; break;
-		        case "coap" : protcolType = ProtocolType.coap; break;
-		        case "mqtt" : protcolType = ProtocolType.mqtt; break;
-	        }	        
-		} catch (FileNotFoundException e) {
- 			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );
-		}
-
+	public static void setTheConfiguration(String resourceName) {
+		StaticConfig.setTheConfiguration(RadarSystemConfig.class, resourceName);
 	}	
 	 
 }
