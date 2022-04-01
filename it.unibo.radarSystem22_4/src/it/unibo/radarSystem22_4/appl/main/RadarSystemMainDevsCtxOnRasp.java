@@ -42,13 +42,14 @@ public class RadarSystemMainDevsCtxOnRasp implements IApplication{
 		if( systemConfig != null ) {
 			RadarSystemConfig.setTheConfiguration(systemConfig);
 		}
-		if( domainConfig == null && systemConfig == null) {
-			DomainSystemConfig.simulation  = true;
-	    	DomainSystemConfig.testing     = false;			
-	    	DomainSystemConfig.tracing     = false;			
-			DomainSystemConfig.sonarDelay  = 200;
-	    	DomainSystemConfig.ledGui      = true;		//se siamo su PC	
-	    	
+		if( domainConfig == null) {
+			DomainSystemConfig.simulation = true;
+			DomainSystemConfig.testing = false;
+			DomainSystemConfig.tracing = false;
+			DomainSystemConfig.sonarDelay = 200;
+			DomainSystemConfig.ledGui = true;        //se siamo su PC
+		}
+		if (systemConfig == null) {
 		    CommSystemConfig.tracing       = true;
 
 		    RadarSystemConfig.RadarGuiRemote   = true;		
@@ -77,7 +78,7 @@ public class RadarSystemMainDevsCtxOnRasp implements IApplication{
 	
 	public static void main( String[] args) throws Exception {
 		//ColorsOut.out("Please set RadarSystemConfig.pcHostAddr in RadarSystemConfig.json");
-		new RadarSystemMainDevsCtxOnRasp().doJob(null,null);
+		new RadarSystemMainDevsCtxOnRasp().doJob("../DomainSystenConfig.json",null);
  	}
 
 }

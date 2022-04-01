@@ -19,12 +19,12 @@ import it.unibo.radarSystem22_4.comm.utils.BasicUtils;
  * Il sistema attiva 4 thread (main, TcpContextSerer e due client)
  */
 public class SharedCounterExampleMain  {
-private int ctxServerPort   = 7070;
-private String delay        = "100"; //con delay = 0 funziona
-private ProtocolType protocol;
-IApplMessage msgDec = new ApplMessage(
-	      "msg( dec, dispatch, main, counter, dec(DELAY), 1 )"
-	      .replace("DELAY", delay));
+	private int ctxServerPort   = 7070;
+	private String delay        = "100"; //con delay = 0 funziona
+	private ProtocolType protocol;
+	IApplMessage msgDec = new ApplMessage(
+			  "msg( dec, dispatch, main, counter, dec(DELAY), 1 )"
+			  .replace("DELAY", delay));
  
 	public void configure(  ) {
  		BasicUtils.aboutThreads("Before configure - ");
