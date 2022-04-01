@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d631edc2-d2cd-469b-8140-a98091139504" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/interfaces/ISonarObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/interfaces/ISonarObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/TestSonarMockObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/test/it/unibo/radarSystem22/domain/TestSonarMockObserver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/counter/SharedCounterExampleMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/counter/SharedCounterExampleMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainDevsCtxOnRasp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainDevsCtxOnRasp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainWithCtxOnPc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainWithCtxOnPc.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +21,29 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/../it.unibo.radarSystem22.domain">
+      <ProjectState />
+    </projectState>
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="it.unibo.radarSystem22_4" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -41,8 +60,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../it.unibo.radarSystem22.domain" />
   </component>
-  <component name="RunManager" selected="Application.SharedCounterExampleMain">
+  <component name="RunManager" selected="Gradle.TestSonarMockObserver">
     <configuration name="RadarSystemMainDevsCtxOnRasp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.unibo.radarSystem22_4.appl.main.RadarSystemMainDevsCtxOnRasp" />
       <module name="it.unibo.radarSystem22_4.main" />
@@ -95,8 +115,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestSonarMockObserver" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../it.unibo.radarSystem22.domain" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;it.unibo.radarSystem22.domain.TestSonarMockObserver&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestSonarMockObserver" />
         <item itemvalue="Application.SharedCounterExampleMain" />
         <item itemvalue="Application.ReplyProblem" />
         <item itemvalue="Application.RadarSystemMainDevsCtxOnRasp" />

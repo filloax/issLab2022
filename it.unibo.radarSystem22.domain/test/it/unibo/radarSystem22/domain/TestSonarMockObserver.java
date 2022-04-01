@@ -133,7 +133,7 @@ public class TestSonarMockObserver {
         sonar.activate();
         BasicUtils.delay(100);
         while (sonar.isActive()) {
-            BasicUtils.delay(100);
+            BasicUtils.delay(200);
         }
 
         assertTrue(didTerm);
