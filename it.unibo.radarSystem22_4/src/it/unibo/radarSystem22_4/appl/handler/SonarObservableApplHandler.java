@@ -2,6 +2,7 @@ package it.unibo.radarSystem22_4.appl.handler;
 
  
 import it.unibo.radarSystem22.domain.interfaces.ISonar;
+import it.unibo.radarSystem22.domain.interfaces.ISonarObservable;
 import it.unibo.radarSystem22_4.appl.interpreter.SonarApplInterpreter;
 import it.unibo.radarSystem22_4.comm.ApplMsgHandler;
 import it.unibo.radarSystem22_4.comm.UnknownCommandException;
@@ -11,17 +12,16 @@ import it.unibo.radarSystem22_4.comm.interfaces.IApplMsgHandler;
 import it.unibo.radarSystem22_4.comm.interfaces.Interaction2021;
 import it.unibo.radarSystem22_4.comm.utils.ColorsOut;
 
- 
 
-public class SonarApplHandler extends ApplMsgHandler  {
- 
+public class SonarObservableApplHandler extends ApplMsgHandler  {
+
 	private IApplInterpreter sonarIntepr;
 
-	public static IApplMsgHandler create(String name, ISonar sonar) {
-		return new SonarApplHandler(name, sonar);
+	public static IApplMsgHandler create(String name, ISonarObservable sonar) {
+		return new SonarObservableApplHandler(name, sonar);
 	}
 
-	public SonarApplHandler(String name, ISonar sonar) {
+	public SonarObservableApplHandler(String name, ISonarObservable sonar) {
 		super(name);
 		sonarIntepr = new SonarApplInterpreter(sonar);
 		ColorsOut.out(name+ " | SonarApplHandler CREATED with sonar= " + sonar, ColorsOut.MAGENTA);

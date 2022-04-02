@@ -7,7 +7,7 @@ import it.unibo.radarSystem22_4.comm.utils.ColorsOut;
 import it.unibo.radarSystem22_4.comm.utils.CommSystemConfig;
 
 public abstract class ApplMsgHandler  implements IApplMsgHandler {  
-protected String name;
+	protected String name;
    
  	public ApplMsgHandler( String name  ) {  
 		this.name = name;
@@ -28,7 +28,7 @@ protected String name;
  	
  	
  	@Override
- 	public void sendAnswerToClient( String reply, Interaction2021 conn   ) {
+ 	public void sendAnswerToClient( String reply, Interaction2021 conn ) {
   		try {
   			ColorsOut.out(name + " | ApplMsgHandler sendAnswerToClient conn=" + conn, ColorsOut.BLUE);
 			conn.reply(reply);
@@ -41,11 +41,11 @@ protected String name;
  	public void sendAnswerToClient( String reply  ) {
 		ColorsOut.out(name + " | ApplMsgHandler sendAnswerToClient reply=" + reply, ColorsOut.BLUE);
 		try {
-			if( CommSystemConfig.protcolType == ProtocolType.mqtt) {
+			if( CommSystemConfig.protocolType == ProtocolType.mqtt) {
 				//TODO
 			}else {
 				ColorsOut.outerr(name + " | ApplMsgHandler sendAnswerToClient not implemented for  " 
-							+ CommSystemConfig.protcolType);
+							+ CommSystemConfig.protocolType);
 			}
 		} catch (Exception e) {
 			ColorsOut.outerr(name + " | ApplMsgHandler sendAnswerToClient ERROR " + e.getMessage());

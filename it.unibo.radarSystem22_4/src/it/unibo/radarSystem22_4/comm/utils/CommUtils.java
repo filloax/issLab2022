@@ -8,13 +8,13 @@ import it.unibo.radarSystem22_4.comm.interfaces.IApplMessage;
 public class CommUtils {
  	
 	public static boolean isCoap() {
-		return CommSystemConfig.protcolType==ProtocolType.coap ;
+		return CommSystemConfig.protocolType ==ProtocolType.coap ;
 	}
 	public static boolean isMqtt() {
-		return CommSystemConfig.protcolType==ProtocolType.mqtt ;
+		return CommSystemConfig.protocolType ==ProtocolType.mqtt ;
 	}
 	public static boolean isTcp() {
-		return CommSystemConfig.protcolType==ProtocolType.tcp ;
+		return CommSystemConfig.protocolType ==ProtocolType.tcp ;
 	}
 	
 	public static String getContent( String msg ) {
@@ -33,7 +33,7 @@ public class CommUtils {
 
 	public static IApplMessage buildDispatch(String sender, String msgId, String payload, String dest) {
 		try {
-			return new ApplMessage(msgId, ApplMessageType.dispatch.toString(),sender,dest,payload,""+(msgNum++));
+			return new ApplMessage(msgId, ApplMessageType.dispatch,sender,dest,payload, msgNum++);
 		} catch (Exception e) {
 			ColorsOut.outerr("buildDispatch ERROR:"+ e.getMessage());
 			return null;
@@ -42,7 +42,7 @@ public class CommUtils {
 	
 	public static IApplMessage buildRequest(String sender, String msgId, String payload, String dest) {
 		try {
-			return new ApplMessage(msgId, ApplMessageType.request.toString(),sender,dest,payload,""+(msgNum++));
+			return new ApplMessage(msgId, ApplMessageType.request,sender,dest,payload, msgNum++);
 		} catch (Exception e) {
 			ColorsOut.outerr("buildRequest ERROR:"+ e.getMessage());
 			return null;
@@ -50,7 +50,7 @@ public class CommUtils {
 	}
 	public static IApplMessage buildReply(String sender, String msgId, String payload, String dest) {
 		try {
-			return new ApplMessage(msgId, ApplMessageType.reply.toString(),sender,dest,payload,""+(msgNum++));
+			return new ApplMessage(msgId, ApplMessageType.reply,sender,dest,payload, msgNum++);
 		} catch (Exception e) {
 			ColorsOut.outerr("buildRequest ERROR:"+ e.getMessage());
 			return null;

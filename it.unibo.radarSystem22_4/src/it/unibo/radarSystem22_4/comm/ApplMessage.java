@@ -19,16 +19,31 @@ public class ApplMessage implements IApplMessage {
     protected Interaction2021 conn;		//not null for request
 	
 	public ApplMessage( 
-			String MSGID, String MSGTYPE, String SENDER, String RECEIVER, String CONTENT, String SEQNUM ) {
+			String MSGID, String MSGTYPE, String SENDER, String RECEIVER, String CONTENT, int SEQNUM ) {
         msgId 		= MSGID;
         msgType 	= MSGTYPE;
         msgSender 	= SENDER;
         msgReceiver = RECEIVER;
         msgContent 	= CONTENT;
-        msgNum      = Integer.parseInt(SEQNUM);		
+        msgNum      = SEQNUM;
 	}
-	
-	public void setConn( Interaction2021 conn ) {
+
+    public ApplMessage(
+            String MSGID, ApplMessageType type, String SENDER, String RECEIVER, String CONTENT, int SEQNUM ) {
+        this(MSGID, type.toString(), SENDER, RECEIVER, CONTENT, SEQNUM);
+    }
+
+    public ApplMessage(
+            String MSGID, ApplMessageType type, String SENDER, String RECEIVER, String CONTENT, String SEQNUM ) {
+        this(MSGID, type.toString(), SENDER, RECEIVER, CONTENT, Integer.parseInt(SEQNUM));
+    }
+
+    public ApplMessage(
+            String MSGID, String MSGTYPE, String SENDER, String RECEIVER, String CONTENT, String SEQNUM ) {
+        this(MSGID, MSGTYPE, SENDER, RECEIVER, CONTENT, Integer.parseInt(SEQNUM));
+    }
+
+    public void setConn( Interaction2021 conn ) {
 		if( isRequest() ) this.conn = conn;
 		else ColorsOut.out("WARNING: setting conn in a non-request message");
 	}
@@ -74,12 +89,15 @@ public class ApplMessage implements IApplMessage {
     public boolean isReply(){
         return msgType.equals( ApplMessageType.reply.toString() );
     }   
-    
+
     public String toString() {
     	return "msg($msgId,$msgType,$msgSender,$msgReceiver,$msgContent,$msgNum)"
-    			.replace("$msgId",msgId).replace("$msgType",msgType)
-    			.replace("$msgSender",msgSender).replace("$msgReceiver",msgReceiver)
-    			.replace("$msgContent",msgContent).replace("$msgNum",""+msgNum);
+    			.replace("$msgId",msgId)
+                .replace("$msgType",msgType)
+    			.replace("$msgSender",msgSender)
+                .replace("$msgReceiver",msgReceiver)
+    			.replace("$msgContent",msgContent)
+                .replace("$msgNum",""+msgNum);
     }
 
 }

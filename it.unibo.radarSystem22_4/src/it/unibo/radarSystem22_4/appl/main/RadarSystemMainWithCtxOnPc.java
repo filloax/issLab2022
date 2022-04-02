@@ -10,7 +10,6 @@ import it.unibo.radarSystem22_4.appl.proxy.LedProxy;
 import it.unibo.radarSystem22_4.appl.proxy.SonarProxy;
 import it.unibo.radarSystem22_4.comm.ProtocolType;
 import it.unibo.radarSystem22_4.comm.interfaces.IApplication;
-import it.unibo.radarSystem22_4.comm.utils.BasicUtils;
 import it.unibo.radarSystem22_4.comm.utils.CommSystemConfig;
 
 public class RadarSystemMainWithCtxOnPc implements IApplication{
@@ -34,14 +33,14 @@ public class RadarSystemMainWithCtxOnPc implements IApplication{
 		RadarSystemConfig.DLIMIT           = 80;
 		RadarSystemConfig.tracing          = true;
 		RadarSystemConfig.ctxServerPort    = 8756;
-		CommSystemConfig.protcolType = ProtocolType.tcp;
+		CommSystemConfig.protocolType = ProtocolType.tcp;
 		DomainSystemConfig.simulation = true;
 		DomainSystemConfig.sonarVerbose = true;
 	}
 	
 	protected void configure() {		
 		String host           = RadarSystemConfig.raspAddr;
-		ProtocolType protocol = CommSystemConfig.protcolType;
+		ProtocolType protocol = CommSystemConfig.protocolType;
 		String ctxport        = ""+RadarSystemConfig.ctxServerPort;
 		led    		= new LedProxy("ledPxy",     host, ctxport, protocol );
   		sonar  		= new SonarProxy("sonarPxy", host, ctxport, protocol );

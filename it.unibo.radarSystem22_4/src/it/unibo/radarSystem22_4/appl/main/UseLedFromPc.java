@@ -27,17 +27,16 @@ public class UseLedFromPc implements IApplication{
 	public void setup( String domainConfig, String systemConfig )  {
 		ColorsOut.outappl(" === " + getName() + " ===", ColorsOut.MAGENTA);
 		RadarSystemConfig.DLIMIT           = 80;
-		RadarSystemConfig.raspAddr         = "192.168.1.90";
 		RadarSystemConfig.ctxServerPort    = 8756;
-		CommSystemConfig.protcolType = ProtocolType.tcp;
+		CommSystemConfig.protocolType = ProtocolType.tcp;
 	}
 	
 	protected void configure() {		
 		String host           = RadarSystemConfig.raspAddr;
-		ProtocolType protocol = CommSystemConfig.protcolType;
+		ProtocolType protocol = CommSystemConfig.protocolType;
 		String ctxport        = ""+RadarSystemConfig.ctxServerPort;
 		led    		          = new LedProxy("ledPxy", host, ctxport, protocol );
-		//WARNING: il LedProxy va chiuso con un casting perchè ILed non ha deactivate
+		//WARNING: il LedProxy va chiuso con un casting perchï¿½ ILed non ha deactivate
  	}
 	
 

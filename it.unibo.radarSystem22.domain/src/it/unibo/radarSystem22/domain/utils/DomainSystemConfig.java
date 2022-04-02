@@ -18,7 +18,6 @@ public class DomainSystemConfig {
 
 	public static int sonarDelay          =  100;     
 	public static int sonarDistanceMax    =  150;     
-	public static boolean sonarObservable =  false;
 	public static int sonarMockDelta = -1;
 	public static int sonarMockStartDist = 100;
 	public static boolean sonarVerbose = false;

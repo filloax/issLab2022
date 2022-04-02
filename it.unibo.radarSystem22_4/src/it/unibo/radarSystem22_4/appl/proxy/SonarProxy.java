@@ -11,18 +11,18 @@ import it.unibo.radarSystem22_4.comm.proxy.ProxyAsClient;
 import it.unibo.radarSystem22_4.comm.utils.CommUtils;
 
 
-public class SonarProxy extends ProxyAsClient implements ISonar{
-	public static    IApplMessage sonarActivate   ; 
-	public static    IApplMessage sonarDeactivate ;  
-	public static    IApplMessage getDistance  ; 
-	public static    IApplMessage isActive     ; 
+public class SonarProxy extends ProxyAsClient implements ISonar {
+	public IApplMessage sonarActivate;
+	public IApplMessage sonarDeactivate;
+	public IApplMessage getDistance;
+	public IApplMessage isActive;
   	
  	public SonarProxy( String name, String host, String entry, ProtocolType protocol ) {
 		super( name,  host,  entry, protocol );
-		sonarActivate   = CommUtils.buildDispatch(name,"cmd", "activate",   "sonar");
-		sonarDeactivate = CommUtils.buildDispatch(name,"cmd", "deactivate", "sonar");
-		getDistance     = CommUtils.buildRequest(name, "ask", "getDistance","sonar");
-		isActive        = CommUtils.buildRequest(name, "ask", "isActive",   "sonar");
+		sonarActivate   = CommUtils.buildDispatch(name, "cmd", "activate",   "sonar");
+		sonarDeactivate = CommUtils.buildDispatch(name, "cmd", "deactivate", "sonar");
+		getDistance     = CommUtils.buildRequest (name, "ask", "getDistance","sonar");
+		isActive        = CommUtils.buildRequest (name, "ask", "isActive",   "sonar");
  	}
  	@Override
 	public void activate() {

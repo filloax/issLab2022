@@ -241,7 +241,7 @@ div.imagedesc{
             </ul>
 
             Inoltre, data l'assenza di ulteriori vincoli, vanno fatte notare altre peculiarità:
-            <ul>
+            <ol>
                 <li>Deve essere possibile registrarsi e de-registrarsi 
                     dall'Observer anche all'interno dell'esecuzione di un callback (update, ecc.). Questo potrebbe richiedere accorgimenti in base alle 
                     scelte implementative.
@@ -249,7 +249,7 @@ div.imagedesc{
                 <li>Questo pattern rende il dispositivo una componente anche attiva, e non solamente passiva e osservata. Quindi, avrà degli impatti 
                     sulla struttura di comunicazione.
                 </li>
-            </ul> 
+            </ol> 
         </p>
     </div>
 
@@ -259,7 +259,30 @@ div.imagedesc{
     <h2>Project</h2> 
 
     <div style="width: 50%">
-
+        <h3>Domain</h3>
+        <p>
+            Ho scelto di far implementare ISonarObserver direttamente a 
+            <a href="../../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/models/SonarModel.java">SonarModel</a> 
+            dentro radarSystem22.domain: questo porta a una violazione del pricipio di "non modifica ma estensione", ma in compenso aggiunge 
+            le funzionalità dell'Observer ai vari Sonar che estendono SonarModel 
+            senza richiedere alcuna modifica del loro codice.
+        </p>
+        <p>
+            DeviceFactory ora contiene un metodo aggiuntivo createSonarObservable, lasciando all'applicazione la scelta sull'uso, visto che il 
+            pattern necessita un approccio diverso a livello applicativo, come sopra.
+        </p>
+        <p>
+            Per ovviare al problema 1., vale a dire possibilità di registrarsi anche durante l'esecuzione dei callback, visto che la modifica 
+            di una collezione durante l'iteraizone su di essa in generale non è consigliabile, è stata realizzata una classe di supporto 
+            <a href="../../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/SafeUpdateSet.java">SafeUpdateSet</a>
+            che estende HashSet, con un metodo speciale <emph>safeForEach</emph> che rimanda l'effetto chiamate a add o receive avvenute durante
+            esso alla fine dell'iterazione; questo viene poi usato da subscribe/unsubscribe.
+        </p>
+        <p>
+            È inoltre inclusa una classe helper
+            <a href="../../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/SonarObserverLambda.java">SonarObserverLambda</a>
+            per creare un observer velocemente tramite funzioni lambda.
+        </p>
     </div>
 
     <h2>Testing</h2> 

@@ -16,7 +16,7 @@ public class CommSystemConfig {
 	
 	public static  String mqttBrokerAddr = "tcp://localhost:1883"; //: 1883  OPTIONAL  tcp://broker.hivemq.com
 	public static int serverTimeOut        =  600000;  //10 minuti	
- 	public static ProtocolType protcolType = ProtocolType.tcp;
+ 	public static ProtocolType protocolType = ProtocolType.tcp;
  	public static boolean tracing          = false;
 
 	public static void setTheConfiguration(  ) {
@@ -40,9 +40,9 @@ public class CommSystemConfig {
 	        tracing          = object.getBoolean("tracing");
 	        
 	        switch( object.getString("protocolType") ) {
-		        case "tcp"  : protcolType = ProtocolType.tcp; break;
-		        case "coap" : protcolType = ProtocolType.coap; break;
-		        case "mqtt" : protcolType = ProtocolType.mqtt; break;
+		        case "tcp"  : protocolType = ProtocolType.tcp; break;
+		        case "coap" : protocolType = ProtocolType.coap; break;
+		        case "mqtt" : protocolType = ProtocolType.mqtt; break;
 	        }
  	        
 		} catch (FileNotFoundException e) {

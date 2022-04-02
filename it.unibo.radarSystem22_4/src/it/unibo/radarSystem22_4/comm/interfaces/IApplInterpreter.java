@@ -1,5 +1,7 @@
 package it.unibo.radarSystem22_4.comm.interfaces;
- 
+
+import it.unibo.radarSystem22_4.comm.UnknownCommandException;
+
 public interface IApplInterpreter {
- 	public String elaborate( IApplMessage message );
+ 	String elaborate(IApplMessage message) throws UnknownCommandException;
 }

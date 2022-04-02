@@ -52,7 +52,7 @@ public class RadarSystemMainDevsCtxOnRasp implements IApplication{
 		if (systemConfig == null) {
 		    CommSystemConfig.tracing       = true;
 
-		    RadarSystemConfig.RadarGuiRemote   = true;		
+		    RadarSystemConfig.radarGuiRemote = true;
  			RadarSystemConfig.ctxServerPort    = 8756;
  			RadarSystemConfig.protcolType      = ProtocolType.tcp;
 		}
@@ -63,13 +63,17 @@ public class RadarSystemMainDevsCtxOnRasp implements IApplication{
 	   sonar = DeviceFactory.createSonar();
    
  	   //contextServer  = new TcpContextServer("TcpCtxServer",RadarSystemConfig.ctxServerPort); 	   
-	   contextServer = new EnablerContext("ctx",""+RadarSystemConfig.ctxServerPort,
- 			                  RadarSystemConfig.protcolType, new ContextMsgHandler("ctxH"));
+	   contextServer = new EnablerContext(
+			   "ctx",
+			   Integer.toString(RadarSystemConfig.ctxServerPort),
+ 			   RadarSystemConfig.protcolType,
+			   new ContextMsgHandler("ctxH")
+	   );
 		//Registrazione dei componenti presso il contesto
  	   IApplMsgHandler sonarHandler = SonarApplHandler.create("sonarH",sonar); 
 	   IApplMsgHandler ledHandler   = LedApplHandler.create("ledH",led);		  
 	   contextServer.addComponent("sonar", sonarHandler);	//sonar NAME mandatory
-	   contextServer.addComponent("led",   ledHandler);		//led NAME mandatory
+	   contextServer.addComponent("led",   ledHandler);	//led NAME mandatory
 	}
 	
 	protected void execute() {		
