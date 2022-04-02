@@ -240,9 +240,16 @@ div.imagedesc{
                 </li>
             </ul>
 
-            Inoltre, data l'assenza di ulteriori vincoli, va fatta notare un'altra peculiarità: deve essere possibile registrarsi e de-registrarsi 
-            dall'Observer anche all'interno dell'esecuzione di un callback (update, ecc.). Questo potrebbe richiedere accorgimenti in base alle 
-            scelte implementative.
+            Inoltre, data l'assenza di ulteriori vincoli, vanno fatte notare altre peculiarità:
+            <ul>
+                <li>Deve essere possibile registrarsi e de-registrarsi 
+                    dall'Observer anche all'interno dell'esecuzione di un callback (update, ecc.). Questo potrebbe richiedere accorgimenti in base alle 
+                    scelte implementative.
+                </li>
+                <li>Questo pattern rende il dispositivo una componente anche attiva, e non solamente passiva e osservata. Quindi, avrà degli impatti 
+                    sulla struttura di comunicazione.
+                </li>
+            </ul> 
         </p>
     </div>
 
