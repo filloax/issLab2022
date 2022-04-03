@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d631edc2-d2cd-469b-8140-a98091139504" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/handler/SonarObservableApplHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/UnknownCommandException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/utils/DomainSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/utils/DomainSystemConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/interfaces/ISubMsgHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/RadarSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/RadarSystemConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/handler/LedApplHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/handler/LedApplHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/handler/SonarApplHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/handler/SonarApplHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/interpreter/LedApplInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/interpreter/LedApplInterpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/interpreter/SonarApplInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/interpreter/SonarApplInterpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainDevsCtxOnRasp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainDevsCtxOnRasp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainWithCtxOnPc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/RadarSystemMainWithCtxOnPc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/UseLedFromPc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/UseLedFromPc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/UseSonarFromPc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/main/UseSonarFromPc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/proxy/SonarProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/proxy/SonarProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/ApplMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/ApplMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/ApplMsgHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/ApplMsgHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/context/ContextMsgHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/context/ContextMsgHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/interfaces/IApplInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/interfaces/IApplInterpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/utils/CommSystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/utils/CommSystemConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/utils/CommUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/utils/CommUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userDocs/radarSystem4_SonarObserver_Filippo_Lenzi.html" beforeDir="false" afterPath="$PROJECT_DIR$/userDocs/radarSystem4_SonarObserver_Filippo_Lenzi.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +42,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>

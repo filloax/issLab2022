@@ -283,6 +283,19 @@ div.imagedesc{
             <a href="../../it.unibo.radarSystem22.domain/src/it/unibo/radarSystem22/domain/SonarObserverLambda.java">SonarObserverLambda</a>
             per creare un observer velocemente tramite funzioni lambda.
         </p>
+        <h3>Comunicazione</h3>
+        <p>
+            Dato il cambio di interazione, con l'observable che diventa parte attiva ma contemporaneamente deve poter ricevere comandi di 
+            attivazione/disattivazione, si utilizza una struttura di rete di tipo publisher/subscriber, che è analoga al pattern Observer.
+        </p>
+        <p>
+            Viene quindi introdotta la classe
+            <a href="../src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java">Subscriber</a>
+            che estende ProxyAsClient, introducendo due metodi subscribe e unsubscribe verso un certo publisher specificato. Al primo subscribe 
+            viene avviato un thread di monitoraggio sulla stessa connessione che rimane in attesa di messaggi dai publisher a cui si è iscritti.
+            Inoltre, permette di inviare comandi, estendendo ProxyAsClient, ma non richieste, visto che creerebbe interferenze con il thread di 
+            ascolto.
+        </p>
     </div>
 
     <h2>Testing</h2> 
