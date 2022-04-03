@@ -296,6 +296,12 @@ div.imagedesc{
             Inoltre, permette di inviare comandi, estendendo ProxyAsClient, ma non richieste, visto che creerebbe interferenze con il thread di 
             ascolto.
         </p>
+        <p>
+            Inoltre, insieme ad essa viene introdotta la classe
+            <a href="../src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java">Publisher</a>
+            che estende ApplMsgHandler. Può venire aggiunta ad un contesto e gestisce messaggi di subscribe e unsubscribe inviati da un Subscriber,
+            e offre un metodo pubblico publish(String) per inviare un messaggio a ogni Subscriber registrato.
+        </p>
     </div>
 
     <h2>Testing</h2> 
