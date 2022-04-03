@@ -19,8 +19,8 @@ import it.unibo.radarSystem22_4.comm.utils.CommUtils;
 
 
 public class TestUdpSupports {
-private UdpServer server;
-public static final int testPort = 8111; 
+	private UdpServer server;
+	public static final int testPort = 8111;
 	
 	@Before
 	public void init() {

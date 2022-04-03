@@ -6,6 +6,7 @@ import it.unibo.radarSystem22_4.comm.interfaces.IApplMessage;
 import it.unibo.radarSystem22_4.comm.interfaces.ISubMsgHandler;
 import it.unibo.radarSystem22_4.comm.interfaces.Interaction2021;
 import it.unibo.radarSystem22_4.comm.proxy.ProxyAsClient;
+import it.unibo.radarSystem22_4.comm.utils.ColorsOut;
 import it.unibo.radarSystem22_4.comm.utils.CommUtils;
 
 import java.util.HashSet;
@@ -42,6 +43,7 @@ public class Subscriber extends ProxyAsClient {
         sendCommandOnConnection(msg.toString());
         subscribedTo.add(targetPublisher);
         startListenIfNot();
+        ColorsOut.out(String.format("Sub [%s]: subscribed to %s", name, targetPublisher), ColorsOut.YELLOW);
     }
 
     public void unsubscribe(String targetPublisher) {
@@ -49,11 +51,12 @@ public class Subscriber extends ProxyAsClient {
             IApplMessage msg = CommUtils.buildDispatch(name,"sub", "unsubscribe", targetPublisher);
             sendCommandOnConnection(msg.toString());
             subscribedTo.remove(targetPublisher);
+            ColorsOut.out(String.format("Sub [%s]: unsubscribed from %s", name, targetPublisher), ColorsOut.YELLOW);
         }
     }
 
     private void startListenIfNot() {
-        if (!listening && !listenThread.isAlive()) {
+        if (!listening || listenThread == null || !listenThread.isAlive()) {
             listening = true;
             listenThread = new Thread(() -> {
                 Interaction2021 conn = getConn();
@@ -71,6 +74,8 @@ public class Subscriber extends ProxyAsClient {
                     }
                 }
             });
+            listenThread.start();
+            ColorsOut.out(String.format("Sub [%s]: now listening", name), ColorsOut.YELLOW);
         }
     }
 

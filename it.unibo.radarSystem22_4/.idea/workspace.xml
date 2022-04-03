@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d631edc2-d2cd-469b-8140-a98091139504" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/comm/pubsub/PubSubTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userDocs/radarSystem4_SonarObserver_Filippo_Lenzi.html" beforeDir="false" afterPath="$PROJECT_DIR$/userDocs/radarSystem4_SonarObserver_Filippo_Lenzi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/udp/TestUdpSupports.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/udp/TestUdpSupports.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,20 +78,7 @@
       <recent name="it.unibo.radarSystem22_4.appl.handler" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UseSonarFromPc">
-    <configuration name="SharedCounterExampleMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="it.unibo.radarSystem22_4.appl.counter.SharedCounterExampleMain" />
-      <module name="it.unibo.radarSystem22_4.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="it.unibo.radarSystem22_4.appl.counter.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.PubSubTest.basicTest">
     <configuration name="UseLedFromPc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.unibo.radarSystem22_4.appl.main.UseLedFromPc" />
       <module name="it.unibo.radarSystem22_4.main" />
@@ -112,6 +104,29 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="PubSubTest.basicTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;it.unibo.radarSystem22_4.comm.pubsub.PubSubTest.basicTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="TestProlog" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -161,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PubSubTest.basicTest" />
         <item itemvalue="Application.UseSonarFromPc" />
         <item itemvalue="Application.UseLedFromPc" />
         <item itemvalue="Gradle.TestProlog" />
         <item itemvalue="Gradle.TestSonarMockObserver" />
-        <item itemvalue="Application.SharedCounterExampleMain" />
       </list>
     </recent_temporary>
   </component>

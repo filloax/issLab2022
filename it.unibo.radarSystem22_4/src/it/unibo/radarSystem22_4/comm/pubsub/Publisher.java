@@ -4,6 +4,7 @@ import alice.tuprolog.Int;
 import it.unibo.radarSystem22_4.comm.ApplMsgHandler;
 import it.unibo.radarSystem22_4.comm.interfaces.IApplMessage;
 import it.unibo.radarSystem22_4.comm.interfaces.Interaction2021;
+import it.unibo.radarSystem22_4.comm.utils.ColorsOut;
 import it.unibo.radarSystem22_4.comm.utils.CommUtils;
 
 import java.util.HashMap;
@@ -31,13 +32,16 @@ public class Publisher extends ApplMsgHandler {
             IApplMessage msg = CommUtils.buildDispatch(getName(), "pub", payload, subscriberTarget);
             sendMsgToClient(msg.toString(), conn);
         }
+        ColorsOut.out(String.format("Pub [%s]: published '%s'", name, payload), ColorsOut.MAGENTA);
     }
 
     private void subscribe(String subscriberName, Interaction2021 conn) {
+        ColorsOut.out(String.format("Pub [%s]: sub %s subscribed", name, subscriberName), ColorsOut.MAGENTA);
         subscribers.put(subscriberName, conn);
     }
 
     private void unsubscribe(String subscriberName) {
+        ColorsOut.out(String.format("Pub [%s]: sub %s unsubscribed", name, subscriberName), ColorsOut.MAGENTA);
         subscribers.remove(subscriberName);
     }
 
