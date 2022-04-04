@@ -302,6 +302,17 @@ div.imagedesc{
             che estende ApplMsgHandler. Può venire aggiunta ad un contesto e gestisce messaggi di subscribe e unsubscribe inviati da un Subscriber,
             e offre un metodo pubblico publish(String) per inviare un messaggio a ogni Subscriber registrato.
         </p>
+        <h3>Sistema</h3>
+        <p>
+            Sono state realizzate le classi proxy 
+            <a href="../src/it/unibo/radarSystem22_4/appl/pubsub/SonarObservablePublisher.java">SonarObservablePublisher</a> 
+            e
+            <a href="../src/it/unibo/radarSystem22_4/appl/proxy/SonarObservableProxy.java">SonarObservableProxy</a> 
+            che sfruttano le classi Publisher e Subscriber create in precedenza per realizzare un proxy per un ISonarObserver. 
+            SonarObservablePublisher non sostituisce SonarApplHandler, bensì aggiunge la possibilità di iscriversi a un canale 
+            di pubblicazione di vari messaggi corrispondenti ai callback del SonarObservable; SonarApplHandler viene comunque usato 
+            per activate/deactivate.
+        </p>
     </div>
 
     <h2>Testing</h2> 
