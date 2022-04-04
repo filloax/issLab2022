@@ -26,21 +26,21 @@ public class Publisher extends ApplMsgHandler {
         subscribers = new HashMap<>();
     }
 
-    public void publish(String payload) {
+    public void publish(String id, String payload) {
         for (String subscriberTarget : subscribers.keySet()) {
             Interaction2021 conn = subscribers.get(subscriberTarget);
-            IApplMessage msg = CommUtils.buildDispatch(getName(), "pub", payload, subscriberTarget);
+            IApplMessage msg = CommUtils.buildDispatch(getName(), id, payload, subscriberTarget);
             sendMsgToClient(msg.toString(), conn);
         }
         ColorsOut.out(String.format("Pub [%s]: published '%s'", name, payload), ColorsOut.MAGENTA);
     }
 
-    private void subscribe(String subscriberName, Interaction2021 conn) {
+    private void addSubscriber(String subscriberName, Interaction2021 conn) {
         ColorsOut.out(String.format("Pub [%s]: sub %s subscribed", name, subscriberName), ColorsOut.MAGENTA);
         subscribers.put(subscriberName, conn);
     }
 
-    private void unsubscribe(String subscriberName) {
+    private void removeSubscriber(String subscriberName) {
         ColorsOut.out(String.format("Pub [%s]: sub %s unsubscribed", name, subscriberName), ColorsOut.MAGENTA);
         subscribers.remove(subscriberName);
     }
@@ -52,10 +52,10 @@ public class Publisher extends ApplMsgHandler {
 
         switch (message.msgContent()) {
             case "subscribe":
-                subscribe(message.msgSender(), conn);
+                addSubscriber(message.msgSender(), conn);
                 break;
             case "unsubscribe":
-                unsubscribe(message.msgSender());
+                removeSubscriber(message.msgSender());
                 break;
             default:
                 throw new IllegalArgumentException("Unrecognized message payload: " + message.msgContent());

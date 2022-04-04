@@ -46,7 +46,7 @@ public class PubSubTest {
 
         String pubName = "testPub";
 
-        Publisher testPub = new Publisher("testPubP");
+        Publisher testPub = new Publisher(pubName);
         context.addComponent(pubName, testPub);
 
         String payload = "testBroadcast";
@@ -67,8 +67,7 @@ public class PubSubTest {
                             new ISubMsgHandler() {
                                 @Override
                                 public void elaborate(IApplMessage message) {
-                                    if (message.msgId().equals("pub")
-                                    && message.msgContent().equals(payload)) {
+                                    if (message.msgContent().equals(payload)) {
                                         testState.put("basicTest_Completed_" + local_i, 1);
                                         System.out.println(local_i + ": received");
                                     }
@@ -83,7 +82,7 @@ public class PubSubTest {
 
         BasicUtils.delay(300);
 
-        testPub.publish(payload);
+        testPub.publish("test", payload);
 
         BasicUtils.delay(300);
 

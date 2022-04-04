@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d631edc2-d2cd-469b-8140-a98091139504" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/comm/pubsub/PubSubTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/proxy/SonarObservableProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/pubsub/SonarObservablePublisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/handler/SonarObservableApplHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/udp/TestUdpSupports.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/udp/TestUdpSupports.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/comm/pubsub/PubSubTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/comm/pubsub/PubSubTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +70,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../it.unibo.radarSystem22.domain" />
   </component>
   <component name="RecentsManager">

@@ -64,10 +64,10 @@ public class Subscriber extends ProxyAsClient {
                     try {
                         String msgString = conn.receiveMsg();
                         IApplMessage msg = new ApplMessage(msgString);
-                        if (msg.msgId().equals("pub")) {
+                        if (subscribedTo.contains(msg.msgSender())) {
                             subHandler.elaborate(msg);
                         } else {
-                            throw new RuntimeException("Received message from not pub!");
+                            throw new RuntimeException("Received message from not publisher: " + msg.msgSender());
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
