@@ -48,7 +48,7 @@ public class ControllerOnPcUsingLedRemote {
   		//askLedStateForTesting();
 	} 
 	
-	//IL main può fare richieste, ma non è in grado di ricevere risposte
+	//IL main puï¿½ fare richieste, ma non ï¿½ in grado di ricevere risposte
 	//in quanto le richieste adesso sono ASINCRONE
 	protected void askLedStateForTesting() {
 		IApplMessage getStateRequest  = ApplData.buildRequest("main","ask", ApplData.reqLedState, ApplData.ledName);

@@ -1,6 +1,5 @@
 package unibo.actor22.local;
  
-import it.unibo.kactor.IApplMessage;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import unibo.actor22.*;
 import unibo.actor22.common.ApplData;

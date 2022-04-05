@@ -10,9 +10,9 @@ import unibo.actor22comm.utils.CommUtils;
  * (non ha riferimenti ai dispositivi-attori)
  */
 public class ControllerActor extends QakActor22{
-protected int numIter = 1;
-protected IApplMessage getStateRequest ;
-protected boolean on = true;
+	protected int numIter = 1;
+	protected IApplMessage getStateRequest ;
+	protected boolean on = true;
 
 	public ControllerActor(String name  ) {
 		super(name);
@@ -36,7 +36,8 @@ protected boolean on = true;
 				doControllerWork();
 	 			break;
 			}
-			default:break;
+			default:
+				break;
 		}		
 	}
 	
@@ -55,16 +56,17 @@ protected boolean on = true;
 		CommUtils.aboutThreads(getName()  + " |  Before doControllerWork on=" + on );
 		//wrongBehavior();
   		//ColorsOut.outappl( getName()  + " | numIter=" + numIter  , ColorsOut.GREEN);		
-	    if( numIter++ < 5 ) {
-	        if( numIter%2 == 1)  forward( ApplData.turnOnLed ); //accesione
-	        else forward( ApplData.turnOffLed ); //spegnimento
+	    if(numIter++ < 5) {
+	        if( numIter%2 == 1)
+				forward( ApplData.turnOnLed); //accesione
+	        else
+				forward( ApplData.turnOffLed); //spegnimento
 	        request(getStateRequest);
-	      }else {
-	    	  forward( ApplData.turnOffLed );
+	  	} else {
+	    	  forward( ApplData.turnOffLed);
 			  //ColorsOut.outappl(getName() + " | emit " + ApplData.endWorkEvent, ColorsOut.MAGENTA);
 	    	  //emit( ApplData.endWorkEvent );
-	      }
-		
+	  	}
 	}
 	
 	protected void elabAnswer(IApplMessage msg) {

@@ -1,7 +1,6 @@
 package unibo.actor22.distrib.annot;
 
 
-import it.unibo.kactor.IApplMessage;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.Qak22Util;
@@ -24,7 +23,7 @@ import unibo.actor22comm.utils.CommUtils;
            implement = {unibo.actor22.common.ControllerActor.class })
 @ActorRemote(name =   {"led","sonar"}, 
              host=    {"localhost","localhost"}, 
-             port=    { ""+ApplData.ctxPort, ""+ApplData.ctxPort}, 
+             port=    { ""+ ApplData.ctxPort, ""+ApplData.ctxPort},
              protocol={ "TCP" , "TCP" })
 public class UsingActorsWithAnnotOnPc {
 	
