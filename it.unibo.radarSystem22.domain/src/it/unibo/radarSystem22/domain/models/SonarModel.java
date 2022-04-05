@@ -49,6 +49,8 @@ public abstract class SonarModel implements ISonar, ISonarObservable {
 
     protected void updateDistance(IDistance dist) {
         curVal = dist;
+        observers.safeForEach(obs -> obs.update(curVal));
+
         if (DomainSystemConfig.sonarVerbose)
             ColorsOut.out("\tCurrent distance: " + curVal.getVal());
     }
@@ -59,13 +61,12 @@ public abstract class SonarModel implements ISonar, ISonarObservable {
         if (!stopped)
             throw new RuntimeException("Sonar già attivato!");
         stopped = false;
-        observers.safeForEach(obs -> obs.activated());
+        observers.safeForEach(ISonarObserver::activated);
         new Thread(() -> {
             while (!stopped) {
                 sonarProduce();
-                observers.safeForEach(obs -> obs.update(curVal));
             }
-            observers.safeForEach(obs -> obs.deactivated());
+            observers.safeForEach(ISonarObserver::deactivated);
         }).start();
     }
 
