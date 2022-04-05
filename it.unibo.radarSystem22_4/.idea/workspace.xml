@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d631edc2-d2cd-469b-8140-a98091139504" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/proxy/SonarObservableProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/pubsub/SonarObservablePublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/appl/handler/SonarObservableApplHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibo/radarSystem22_4/comm/pubsub/Subscriber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/comm/pubsub/PubSubTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/it/unibo/radarSystem22_4/comm/pubsub/PubSubTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../unibolibs/it.unibo.radarSystem22.domain-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../unibolibs/it.unibo.radarSystem22.domain-1.0.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +24,29 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/../it.unibo.radarSystem22.domain">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="it.unibo.radarSystem22_4" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="it.unibo.radarSystem22_4" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="it.unibo.radarSystem22_4" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -81,7 +90,7 @@
       <recent name="it.unibo.radarSystem22_4.appl.handler" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PubSubTest.basicTest">
+  <component name="RunManager" selected="Gradle.it.unibo.radarSystem22.domain [copyJarToBin]">
     <configuration name="UseLedFromPc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.unibo.radarSystem22_4.appl.main.UseLedFromPc" />
       <module name="it.unibo.radarSystem22_4.main" />
@@ -154,36 +163,34 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestSonarMockObserver" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="it.unibo.radarSystem22.domain [copyJarToBin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/../it.unibo.radarSystem22.domain" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;it.unibo.radarSystem22.domain.TestSonarMockObserver&quot;" />
+            <option value="copyJarToBin" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.it.unibo.radarSystem22.domain [copyJarToBin]" />
         <item itemvalue="Gradle.PubSubTest.basicTest" />
         <item itemvalue="Application.UseSonarFromPc" />
         <item itemvalue="Application.UseLedFromPc" />
         <item itemvalue="Gradle.TestProlog" />
-        <item itemvalue="Gradle.TestSonarMockObserver" />
       </list>
     </recent_temporary>
   </component>
