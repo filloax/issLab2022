@@ -20,10 +20,10 @@ public class ControllerActor extends QakActor22{
 
 	public ControllerActor(String name  ) {
 		super(name);
-		getStateRequest  = ApplData.buildRequest(name,"ask", ApplData.reqLedState, ApplData.ledName);
-		getDistanceRequest = ApplData.buildRequest(name, "ask", ApplData.reqGetDistance, ApplData.sonarName);
-		activateSonar = ApplData.buildDispatch(name, "cmd", ApplData.cmdSonarActivate, ApplData.sonarName);
-		deactivateSonar = ApplData.buildDispatch(name, "cmd", ApplData.cmdSonarDeactivate, ApplData.sonarName);
+		getStateRequest  = Qak22Util.buildRequest(name,"ask", ApplData.reqLedState, ApplData.ledName);
+		getDistanceRequest = Qak22Util.buildRequest(name, "ask", ApplData.reqDistance, ApplData.sonarName);
+		activateSonar = Qak22Util.buildDispatch(name, "cmd", ApplData.cmdActivate, ApplData.sonarName);
+		deactivateSonar = Qak22Util.buildDispatch(name, "cmd", ApplData.cmdDeactivate, ApplData.sonarName);
 		dlimit = 40;
 		justAsked = null;
  	}
@@ -90,7 +90,7 @@ public class ControllerActor extends QakActor22{
 		ColorsOut.outappl( getName()  + " | elabAnswer numIter=" + numIter + " "+ msg, ColorsOut.MAGENTA);
 		CommUtils.delay(500);
 
-		if (msg.msgSender().equals(ApplData.sonarName) && justAsked.equals(ApplData.reqGetDistance))
+		if (msg.msgSender().equals(ApplData.sonarName) && justAsked.equals(ApplData.reqDistance))
 			doControllerWork(Integer.parseInt(msg.msgContent()));
 	}
 

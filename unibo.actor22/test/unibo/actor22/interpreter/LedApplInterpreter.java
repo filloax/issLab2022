@@ -1,14 +1,12 @@
 package unibo.actor22.interpreter;
 
-import it.unibo.kactor.IApplMessage;
 import it.unibo.radarSystem22.domain.interfaces.ILed;
 import unibo.actor22.common.ApplData;
-import unibo.actor22comm.interfaces.IApplInterpreter;
+import unibo.actor22comm.interfaces.IInterpreter;
 import unibo.actor22comm.interfaces.UnknownCommandException;
-import unibo.actor22comm.utils.CommUtils;
 
 
-public class LedApplInterpreter implements IApplInterpreter {
+public class LedApplInterpreter implements IInterpreter {
 	private ILed led;
  
 	public LedApplInterpreter(  ILed led) {
