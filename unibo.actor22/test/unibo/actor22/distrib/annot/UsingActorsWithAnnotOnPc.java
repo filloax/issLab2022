@@ -1,6 +1,5 @@
 package unibo.actor22.distrib.annot;
 
-
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.Qak22Util;
@@ -18,12 +17,13 @@ import unibo.actor22comm.utils.CommUtils;
 /*
  * Questo sistema ipotizza che led e sonar siano attori 
  * con cui interagire  a scambio di messaggi
+ * ATTIVARE LedActorOnRasp
  */
 @ActorLocal(name =     {"controller" }, 
            implement = {unibo.actor22.common.ControllerActor.class })
 @ActorRemote(name =   {"led","sonar"}, 
-             host=    {"localhost","localhost"}, 
-             port=    { ""+ ApplData.ctxPort, ""+ApplData.ctxPort},
+             host=    {ApplData.raspAddr,ApplData.raspAddr}, 
+             port=    { ""+ApplData.ctxPort, ""+ApplData.ctxPort}, 
              protocol={ "TCP" , "TCP" })
 public class UsingActorsWithAnnotOnPc {
 	
@@ -43,10 +43,8 @@ public class UsingActorsWithAnnotOnPc {
 		CommSystemConfig.tracing        = false;
 		ProtocolType protocol 		    = CommSystemConfig.protcolType;
 		
-		//Qak22Context.initContext();
-		
-		new EventObserver(ApplData.observerName);
-		Qak22Context.registerAsEventObserver(ApplData.observerName, ApplData.evEndWork);
+//		new EventObserver(ApplData.observerName);
+//		Qak22Context.registerAsEventObserver(ApplData.observerName, ApplData.evEndWork);
 		
 		Qak22Context.handleLocalActorDecl(this);
  		Qak22Context.handleRemoteActorDecl(this);
