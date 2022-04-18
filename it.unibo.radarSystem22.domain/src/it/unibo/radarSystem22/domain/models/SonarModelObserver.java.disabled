@@ -15,11 +15,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public abstract class SonarModel implements ISonar {
+public abstract class SonarModel implements ISonar, ISonarObservable {
     protected boolean stopped = true; //se true il sonar si ferma
     protected IDistance curVal = new Distance(90);
+    protected SafeUpdateSet<ISonarObserver> observers;
 
     protected SonarModel() {
+        observers = new SafeUpdateSet<>();
+
         sonarSetUp();
     }
 
@@ -29,6 +32,9 @@ public abstract class SonarModel implements ISonar {
         } else {
             return createSonarConcrete();
         }
+    }
+    public static ISonarObservable createObservable() {
+        return (ISonarObservable) create();
     }
 
     public static ISonar createSonarMock() {
@@ -43,6 +49,7 @@ public abstract class SonarModel implements ISonar {
 
     protected void updateDistance(IDistance dist) {
         curVal = dist;
+        observers.safeForEach(obs -> obs.update(curVal));
 
         if (DomainSystemConfig.sonarVerbose)
             ColorsOut.out("\tCurrent distance: " + curVal.getVal());
@@ -54,10 +61,12 @@ public abstract class SonarModel implements ISonar {
         if (!stopped)
             throw new RuntimeException("Sonar già attivato!");
         stopped = false;
+        observers.safeForEach(ISonarObserver::activated);
         new Thread(() -> {
             while (!stopped) {
                 sonarProduce();
             }
+            observers.safeForEach(ISonarObserver::deactivated);
         }).start();
     }
 
@@ -78,5 +87,15 @@ public abstract class SonarModel implements ISonar {
     @Override
     public boolean isActive() {
         return !stopped;
+    }
+
+    @Override
+    public void subscribe(ISonarObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void unsubscribe(ISonarObserver observer) {
+        observers.remove(observer);
     }
 }

@@ -44,7 +44,7 @@ public class SonarActor22 extends QakActor22{
 	 	       		ColorsOut.outerr(getName()  + " | SonarConcrete | sonarSetUp ERROR " + e.getMessage() );
 	 	    	}
 	 		}			
-		}else
+		} else
 			ColorsOut.out(getName()  + " | SonarMock| sonarSetUp done ");
 
 	}

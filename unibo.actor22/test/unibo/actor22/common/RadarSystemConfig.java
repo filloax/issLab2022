@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.Optional;
+
+import it.unibo.radarSystem22.domain.utils.StaticConfig;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -25,7 +28,7 @@ public class RadarSystemConfig {
 	public static String raspAddr         = "localhost";		
  
 	
-	public static ProtocolType protcolType= ProtocolType.tcp;		
+	public static ProtocolType protocolType = ProtocolType.tcp;
 	public static int  ctxServerPort      = 8018;
 	
 	//Aggiunte dopo Eventi 	
@@ -36,34 +39,26 @@ public class RadarSystemConfig {
 	}
 	
 	public static void setTheConfiguration( String resourceName ) {
-		//Nella distribuzione resourceName è in una dir che include la bin  
-		FileInputStream fis = null;
-		try {
-			ColorsOut.out("%%% setTheConfiguration from file:" + resourceName);
-			if(  fis == null ) {
- 				 fis = new FileInputStream(new File(resourceName));
-			}
-//	        JSONTokener tokener = new JSONTokener(fis);
-			Reader reader       = new InputStreamReader(fis);
-			JSONTokener tokener = new JSONTokener(reader);      
-	        JSONObject object   = new JSONObject(tokener);
-	 		
-   	        tracing          = object.getBoolean("tracing");
-	        testing          = object.getBoolean("testing");
-	        RadarGuiRemote   = object.getBoolean("RadarGuiRemote");
-	        DLIMIT           = object.getInt("DLIMIT");	
- //Aggiunte dello SPRINT4 	        
-	        ctxServerPort    = object.getInt("ctxServerPort");
-	        
-	        switch( object.getString("protocolType") ) {
-		        case "tcp"  : protcolType = ProtocolType.tcp; break;
-		        case "coap" : protcolType = ProtocolType.coap; break;
-		        case "mqtt" : protcolType = ProtocolType.mqtt; break;
-	        }	        
-		} catch (FileNotFoundException e) {
- 			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );
-		}
-
+		StaticConfig.setTheConfiguration(RadarSystemConfig.class, resourceName,
+				(field, toSave) -> {
+					if (field.getName().equals("protocolType")) {
+						switch ((ProtocolType) toSave) {
+							case tcp: return Optional.of("tcp");
+							case coap : return Optional.of("coap");
+							case mqtt : return Optional.of("mqtt");
+						}
+					}
+					return Optional.empty();
+				}, (field, toLoad) -> {
+					if (field.getName().equals("protocolType")) {
+						switch ((String) toLoad) {
+							case "tcp"  : return Optional.of(ProtocolType.tcp);
+							case "coap" : return Optional.of(ProtocolType.coap);
+							case "mqtt" : return Optional.of(ProtocolType.mqtt);
+						}
+					}
+					return Optional.empty();
+				});
 	}	
 	 
 }

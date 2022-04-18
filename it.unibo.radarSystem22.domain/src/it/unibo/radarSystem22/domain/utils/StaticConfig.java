@@ -9,9 +9,20 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class StaticConfig {
+    private static final BiFunction<Field, Object, Optional<Object>> emptyHook = (__, ___) -> Optional.empty();
+
     public static void setTheConfiguration(Class clazz, String resourceName) {
+        setTheConfiguration(clazz, resourceName, emptyHook, emptyHook);
+    }
+
+    public static void setTheConfiguration(Class clazz, String resourceName,
+                                           BiFunction<Field, Object, Optional<Object>> beforeSaveHook,
+                                           BiFunction<Field, Object, Optional<Object>> afterLoadHook) {
         //Nella distribuzione resourceName è in una dir che include la bin
         try {
             ColorsOut.out("%%% setTheConfiguration from file:" + resourceName);
@@ -22,7 +33,7 @@ public class StaticConfig {
                 JSONTokener tokener = new JSONTokener(reader);
                 JSONObject object = new JSONObject(tokener);
 
-                boolean changed = setFields(clazz, object);
+                boolean changed = setFields(clazz, object, beforeSaveHook, afterLoadHook);
                 if (changed) {
                     writer = new FileWriter(resourceName);
                     saveConfigFile(object, writer);
@@ -44,7 +55,7 @@ public class StaticConfig {
 
         } catch (FileNotFoundException e) {
             ColorsOut.outappl("Config file not found, saving default config file to " + resourceName, ColorsOut.YELLOW);
-            saveConfigFile(createJSONObject(clazz), resourceName);
+            saveConfigFile(createJSONObject(clazz, beforeSaveHook), resourceName);
         }
     }
 
@@ -56,7 +67,7 @@ public class StaticConfig {
             JSONTokener tokener = new JSONTokener(reader);
             JSONObject object = new JSONObject(tokener);
 
-            boolean changed = setFields(clazz, object);
+            boolean changed = setFields(clazz, object, emptyHook, emptyHook);
             if (changed) {
                 saveConfigFile(object, writer);
             }
@@ -100,11 +111,12 @@ public class StaticConfig {
         }
     }
 
-    private static JSONObject createJSONObject(Class clazz) {
+    private static JSONObject createJSONObject(Class clazz, BiFunction<Field, Object, Optional<Object>> beforeSaveHook) {
         try {
             JSONObject object = new JSONObject();
             for (Field field : getPublicStaticFields(clazz)) {
-                object.put(field.getName(), field.get(null));
+                Object value = field.get(null);
+                object.put(field.getName(), beforeSaveHook.apply(field, value).orElse(value));
             }
             return object;
         } catch (JSONException e) {
@@ -120,12 +132,18 @@ public class StaticConfig {
     /**
      * @return true if the object was changed due to missing fields
      */
-    private static boolean setFields(Class clazz, JSONObject loadedObject) {
+    private static boolean setFields(Class clazz, JSONObject loadedObject,
+                                     BiFunction<Field, Object, Optional<Object>> beforeSaveHook,
+                                     BiFunction<Field, Object, Optional<Object>> afterLoadHook) {
         boolean changed = false;
         for (Field field : getPublicStaticFields(clazz)) {
             String name = field.getName();
             Object val = loadedObject.opt(name);
             if (val != null) {
+                Optional<Object> hookReturn = afterLoadHook.apply(field, val);
+                if (hookReturn.isPresent())
+                    val = hookReturn.get();
+
                 try {
                     field.set(null, val);
                 } catch (IllegalAccessException e) {
@@ -133,14 +151,15 @@ public class StaticConfig {
                 }
             } else {
                 try {
-                    loadedObject.put(name, field.get(null));
+                    Object defaultValue = field.get(null);
+                    Optional<Object> hookReturn = beforeSaveHook.apply(field, defaultValue);
+                    loadedObject.put(name, hookReturn.orElse(defaultValue));
                     changed = true;
                     ColorsOut.outappl("Field " + name + " not present in config, using default", ColorsOut.ANSI_YELLOW);
-                } catch (JSONException e) {
+                } catch (JSONException | IllegalAccessException e) {
                     e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace(); // shouldn't happen, but jic
                 }
+
             }
         }
         return changed;

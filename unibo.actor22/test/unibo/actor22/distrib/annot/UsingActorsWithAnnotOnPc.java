@@ -1,5 +1,6 @@
 package unibo.actor22.distrib.annot;
 
+import it.unibo.radarSystem22.domain.utils.BasicUtils;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.Qak22Util;
@@ -20,7 +21,7 @@ import unibo.actor22comm.utils.CommUtils;
  * ATTIVARE LedActorOnRasp
  */
 @ActorLocal(name =     {"controller" }, 
-           implement = {unibo.actor22.common.ControllerForLedActor.class })
+           implement = {unibo.actor22.common.ControllerActor.class })
 @ActorRemote(name =   {"led","sonar"}, 
              host=    {ApplData.raspAddr,ApplData.raspAddr}, 
              port=    { ""+ApplData.ctxPort, ""+ApplData.ctxPort}, 
@@ -61,6 +62,9 @@ public class UsingActorsWithAnnotOnPc {
 //		
 //
 		Qak22Util.sendAMsg( ApplData.activateCrtl );
+
+		BasicUtils.delay(10 * 1000);
+		System.exit(0);
 	} 
 	
 	public void terminate() {

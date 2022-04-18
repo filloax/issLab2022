@@ -19,7 +19,7 @@ public class TestSonarMock {
 
     @Test
     public void testSonar() {
-        int maxDelta = 1;
+        int maxDelta = 2;
 
         DomainSystemConfig.simulateSonar = true;
         DomainSystemConfig.sonarMockDelta = -1;

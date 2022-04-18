@@ -17,7 +17,7 @@ public class DeviceFactory {
         return SonarModel.create();
     }
     public static ISonarObservable createSonarObservable() {
-        return SonarModel.createObservable();
+        throw new NotImplementedException("Observable domain non implementato");
     }
 
     public static IRadarDisplay createRadarDisplay() {
