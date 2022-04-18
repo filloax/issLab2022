@@ -12,10 +12,9 @@ import unibo.actor22comm.utils.ColorsOut;
  * Viene creato dalla prima chiamata a  Qak22Context.registerAsEventObserver
  */
 public class EventMsgHandler extends QakActor22{
-public static final String myName = "eventhandler";
+	public static final String myName = "eventhandler";
 
-protected HashMap<String,String> eventObserverMap = new HashMap<String,String>();  
-
+	protected HashMap<String,String> eventObserverMap = new HashMap<String,String>();
  	
 	public EventMsgHandler( ) {
 		super(myName);
@@ -39,13 +38,14 @@ protected HashMap<String,String> eventObserverMap = new HashMap<String,String>()
 
 	protected void updateTheObservers(IApplMessage msg) {
 		eventObserverMap.forEach(
-				( String actorName,  String evName) -> {
+				(String actorName,  String evName) -> {
 					//ColorsOut.out("updateTheObservers:" + actorName + " evName:" + evName, ColorsOut.MAGENTA); 
 					if( evName.equals( msg.msgId()) ) {
 						IApplMessage m = Qak22Util.buildEvent(msg.msgSender(), msg.msgId(), msg.msgContent(), actorName ) ;
 						Qak22Util.sendAMsg( m );
 						//Warning: we must declare a remote observer
 					}
-		} ) ;
+				}
+		);
 	}
 }
