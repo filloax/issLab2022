@@ -15,7 +15,5 @@ public @interface Actor {
 	boolean local() default true;
 	@SuppressWarnings("rawtypes")
 	Class implement() default void.class;
-	String host() default "";
-	String port() default "";
-	ProtocolType protocol() default ProtocolType.tcp;
+	String remoteContextName() default "";
 }

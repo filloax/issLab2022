@@ -6,9 +6,7 @@ import it.unibo.radarSystemActor.common.ApplData;
 import it.unibo.radarSystemActor.common.ControllerActor;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.Qak22Util;
-import unibo.actor22.annotations.Actor;
-import unibo.actor22.annotations.ActorLocal;
-import unibo.actor22.annotations.ActorRemote;
+import unibo.actor22.annotations.*;
 import unibo.actor22comm.ProtocolType;
 import unibo.actor22comm.utils.ColorsOut;
 import unibo.actor22comm.utils.CommSystemConfig;
@@ -16,8 +14,9 @@ import unibo.actor22comm.utils.CommUtils;
 
 
 @Actor(name="controller", implement = ControllerActor.class)
-@Actor(name="led", local = false, host = ApplData.raspAddr, port = ""+ApplData.ctxPort)
-@Actor(name="sonar", local = false, host = ApplData.raspAddr, port = ""+ApplData.ctxPort)
+@RemoteContext(name="raspi", host = ApplData.raspAddr, port = ""+ApplData.ctxPort)
+@Actor(name="led", local = false, remoteContextName = "raspi")
+@Actor(name="sonar", local = false, remoteContextName = "raspi")
 public class MyActorsWithAnnotOnPc {
 
 	public void doJob() {
@@ -40,7 +39,7 @@ public class MyActorsWithAnnotOnPc {
 		
 		Qak22Context.handleLocalActorDecl(this);
  		Qak22Context.handleRemoteActorDecl(this);
-		Qak22Context.handleRepeatableActorDeclaration(this);
+		AnnotUtil.handleRepeatableActorDeclaration(this);
  	}
 	
 	protected void execute() {

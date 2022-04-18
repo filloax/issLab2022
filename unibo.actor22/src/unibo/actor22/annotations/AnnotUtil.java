@@ -4,12 +4,14 @@ import java.io.FileInputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import unibo.actor22.Qak22Context;
 import unibo.actor22comm.ProtocolInfo;
+import unibo.actor22comm.ProtocolType;
 import unibo.actor22comm.utils.ColorsOut;
  
 
@@ -21,46 +23,91 @@ RELATED TO Actor22
 */
 	
 	public static void createActorLocal(Object element) {
-        Class<?> clazz            = element.getClass();
-        Annotation[] annotations  = clazz.getAnnotations();
-         for (Annotation annot : annotations) {
-        	 if (annot instanceof ActorLocal) {
-        		 ActorLocal a = (ActorLocal) annot;
-        		 for( int i=0; i<a.name().length; i++) {
-        			 String name     = a.name()[i];
-        			 Class  impl     = a.implement()[i];
-            		 try {
-						impl.getConstructor( String.class ).newInstance( name );
-	            		 ColorsOut.outappl( "CREATED LOCAL ACTOR: "+ name, ColorsOut.MAGENTA );
-					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-							| InvocationTargetException | NoSuchMethodException | SecurityException e) {
- 						e.printStackTrace();
-					}
-         		 }
-        	 }
-         }
-		
+        Class<?> clazz = element.getClass();
+        ActorLocal a = clazz.getAnnotation(ActorLocal.class);
+        if (a != null) {
+            for( int i=0; i<a.name().length; i++) {
+                String name = a.name()[i];
+                Class  impl = a.implement()[i];
+                try {
+                    impl.getConstructor( String.class ).newInstance( name );
+                    ColorsOut.outappl( "CREATED LOCAL ACTOR: "+ name, ColorsOut.MAGENTA );
+                } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                        | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 	}
 	public static void  createProxyForRemoteActors(Object element) {
+        Class<?> clazz = element.getClass();
+        ActorRemote a = clazz.getAnnotation(ActorRemote.class);
+        if (a != null) {
+            for (int i = 0; i < a.name().length; i++) {
+                String name = a.name()[i];
+                String host = a.host()[i];
+                String port = a.port()[i];
+                String protocol = a.protocol()[i];
+                Qak22Context.setActorAsRemote(name, port, host, ProtocolInfo.getProtocol(protocol));
+                ColorsOut.outappl(
+                        "CREATE REMOTE ACTOR PROXY:" + name + " host:" + host + " port:" + port
+                                + " protocol:" + protocol, ColorsOut.MAGENTA);
+            }
+        }
+    }
+
+    public static Map<String, RemoteContext> getRemoteContexts(Object element) {
+        Map<String, RemoteContext> out = new HashMap<>();
         Class<?> clazz            = element.getClass();
         Annotation[] annotations  = clazz.getAnnotations();
-        for (Annotation annot : annotations) {
-        	 if (annot instanceof ActorRemote) {
-        		 ActorRemote a = (ActorRemote) annot;
-        		 for( int i=0; i<a.name().length;i++) {
-        			 String name     = a.name()[i];
-        			 String host     = a.host()[i];
-        			 String port     = a.port()[i];
-        			 String protocol = a.protocol()[i];        			 
-        			 Qak22Context.setActorAsRemote(name, port, host, ProtocolInfo.getProtocol(protocol));
-            		 ColorsOut.outappl(
-            				 "CREATE REMOTE ACTOR PROXY:"+ name + " host:" + host + " port:"+port
-            						 + " protocol:" + protocol, ColorsOut.MAGENTA);        			 
-        		 }
-        	 }
-         }
-		
-	}
+        RemoteContext[] remoteContexts = element.getClass().getAnnotationsByType(RemoteContext.class);
+        for (RemoteContext rc : remoteContexts) {
+            String name     = rc.name();
+            String host     = rc.host();
+            String port     = rc.port();
+            ProtocolType protocol = rc.protocol();
+            out.put(name, rc);
+//            ColorsOut.outappl("Registered remote context " + name+ " at "
+//                            + String.format("%s//%s:%s", protocol, host, port), ColorsOut.BLUE);
+        }
+        return out;
+    }
+
+    public static void handleRepeatableActorDeclaration(Object element) {
+        Class<?> clazz = element.getClass();
+        Map<String, RemoteContext> remoteContexts = null;
+        Actor[] actorAnnotations = clazz.getAnnotationsByType(Actor.class);
+        for (Actor actor : actorAnnotations) {
+            String name = actor.name();
+            boolean isLocal = actor.local();
+            if (isLocal) {
+                Class implement = actor.implement();
+                if (implement.equals(void.class))
+                    throw new IllegalArgumentException("@Actor: Local actor needs a class specification");
+
+                try {
+                    implement.getConstructor(String.class).newInstance(name);
+                    ColorsOut.outappl( "Qak22Context | CREATED LOCAL ACTOR: "+ name, ColorsOut.MAGENTA );
+                } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                        | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                String remoteContextName = actor.remoteContextName();
+                if (remoteContextName.equals(""))
+                    throw new IllegalArgumentException("@Actor: Remote actor needs a remoteContextName");
+                if (remoteContexts == null)
+                    remoteContexts = AnnotUtil.getRemoteContexts(element);
+                if (!remoteContexts.containsKey(remoteContextName)) {
+                    throw new IllegalArgumentException("@Actor: remoteContextName invalid, Available:" + remoteContexts.keySet());
+                }
+
+                RemoteContext rc = remoteContexts.get(remoteContextName);
+                Qak22Context.setActorAsRemote(name, rc.port(), rc.host(), rc.protocol());
+                ColorsOut.outappl( "Qak22Context | SET REMOTE ACTOR: "+ name, ColorsOut.MAGENTA );
+            }
+        }
+    }
 	
 /*
 -------------------------------------------------------------------------------

@@ -7,6 +7,7 @@ import it.unibo.radarSystemActor.common.SonarActor;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.annotations.ActorLocal;
 import it.unibo.radarSystemActor.common.ApplData;
+import unibo.actor22.annotations.AnnotUtil;
 import unibo.actor22comm.context.EnablerContextForActors;
 import unibo.actor22comm.utils.ColorsOut;
 import unibo.actor22comm.utils.CommSystemConfig;
@@ -36,7 +37,8 @@ public class DevicesActorsOnRasp {
 		CommSystemConfig.tracing        = false;
 		
 		Qak22Context.handleLocalActorDecl(this);
-  
+  		AnnotUtil.handleRepeatableActorDeclaration(this);
+
 		ctx = new EnablerContextForActors( "ctx",ApplData.ctxPort,ApplData.protocol);
 		//new LedActor( ApplData.ledName );
  		//Registrazione dei componenti presso il contesto: NO MORE ... 

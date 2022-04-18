@@ -9,6 +9,7 @@ import it.unibo.radarSystemActor.common.SonarActor;
 import it.unibo.radarSystemActor.events.SonarActor22;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.annotations.Actor;
+import unibo.actor22.annotations.AnnotUtil;
 import unibo.actor22comm.context.EnablerContextForActors;
 import unibo.actor22comm.utils.ColorsOut;
 import unibo.actor22comm.utils.CommSystemConfig;
@@ -38,7 +39,7 @@ public class EventDevicesOnRasp {
 		RadarSystemConfig.sonarObservable = true;
 		
 		Qak22Context.handleLocalActorDecl(this);
-		Qak22Context.handleRepeatableActorDeclaration(this);
+		AnnotUtil.handleRepeatableActorDeclaration(this);
 
 		ctx = new EnablerContextForActors( "ctx",ApplData.ctxPort,ApplData.protocol);
 		//new LedActor( ApplData.ledName );

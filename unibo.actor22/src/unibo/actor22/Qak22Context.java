@@ -3,11 +3,10 @@ package unibo.actor22;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Map;
+
 import it.unibo.kactor.IApplMessage;
-import unibo.actor22.annotations.Actor;
-import unibo.actor22.annotations.ActorLocal;
-import unibo.actor22.annotations.ActorRemote;
-import unibo.actor22.annotations.Actors;
+import unibo.actor22.annotations.*;
 import unibo.actor22comm.ProtocolInfo;
 import unibo.actor22comm.ProtocolType;
 import unibo.actor22comm.events.EventMsgHandler;
@@ -100,45 +99,6 @@ public class Qak22Context {
     	handleLocalActorDecl(element);
     	handleRemoteActorDecl(element);
    }
-
-   public static void handleRepeatableActorDeclaration(Object element) {
-	   Class<?> clazz            = element.getClass();
-	   Annotation[] annotations  = clazz.getAnnotations();
-	   for (Annotation annot : annotations) {
-		   if (annot instanceof Actors) {
-			   Actors actors = (Actors) annot;
-			   for (Actor actor : actors.value()) {
-				   String name = actor.name();
-				   boolean isLocal = actor.local();
-				   if (isLocal) {
-					   Class implement = actor.implement();
-					   if (implement.equals(void.class))
-						   throw new IllegalArgumentException("@Actor: Local actor needs a class specification");
-
-					   try {
-						   implement.getConstructor(String.class).newInstance(name);
-						   ColorsOut.outappl( "Qak22Context | CREATED LOCAL ACTOR: "+ name, ColorsOut.MAGENTA );
-					   } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-							   | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-						   e.printStackTrace();
-					   }
-				   } else {
-					   String host = actor.host();
-					   String port = actor.port();
-					   ProtocolType protocol = actor.protocol();
-					   if (host.equals(""))
-						   throw new IllegalArgumentException("@Actor: Remote actor needs a host");
-					   if (port.equals(""))
-						   throw new IllegalArgumentException("@Actor: Remote actor needs a port");
-
-					   Qak22Context.setActorAsRemote(name, port, host, protocol);
-					   ColorsOut.outappl( "Qak22Context | SET REMOTE ACTOR: "+ name, ColorsOut.MAGENTA );
-				   }
-			   }
-		   }
-	   }
-   }
-    
  
 
    
