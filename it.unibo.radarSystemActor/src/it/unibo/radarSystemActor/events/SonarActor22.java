@@ -18,7 +18,7 @@ import unibo.actor22comm.utils.CommUtils;
 
 /*
  * Il SonarActor22 NON riusa gli oggetti del dominio
- * ma ridefinisce l'entit� come RISORSA proattiva e reattiva
+ * ma ridefinisce l'entità come RISORSA proattiva e reattiva
  */
 public class SonarActor22 extends QakActor22{
 	private IDistance curVal ;	 
@@ -51,7 +51,7 @@ public class SonarActor22 extends QakActor22{
 
 	@Override
 	protected void handleMsg(IApplMessage msg) {
-		ColorsOut.out( getName()  + " | handleMsgg " + msg);
+		ColorsOut.out( getName()  + " | handleMsg " + msg);
 		if( msg.isRequest() ) elabRequest(msg);
 		else elabCmd(msg);
 	}
@@ -130,12 +130,12 @@ public class SonarActor22 extends QakActor22{
  
 	protected void updateDistance( int d ) {
 		curVal = new Distance( d );
-		ColorsOut.out(getName() + " | updateDistance "+ d, ColorsOut.BLUE);
+		if (DomainSystemConfig.sonarVerbose)
+			ColorsOut.out(getName() + " | updateDistance "+ d, ColorsOut.BLUE);
 		if( RadarSystemConfig.sonarObservable ) {
 			IApplMessage distanceEvent = Qak22Util.buildEvent(getName(), ApplData.evDistance, ""+d );
 			//Qak22Util.sendAMsg(distanceEvent, EventMsgHandler.myName);
 			this.emit(distanceEvent);
 		}	
-	}	
-
+	}
 }

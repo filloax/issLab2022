@@ -3,6 +3,7 @@ package it.unibo.radarSystemActor.events;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.Qak22Util;
+import unibo.actor22.annotations.Actor;
 import unibo.actor22.annotations.ActorLocal;
 import unibo.actor22comm.utils.CommSystemConfig;
 import unibo.actor22comm.utils.CommUtils;
@@ -10,10 +11,8 @@ import it.unibo.radarSystemActor.common.ApplData;
 import it.unibo.radarSystemActor.common.ControllerForSonarActor;
 import it.unibo.radarSystemActor.common.RadarSystemConfig;
 
-
-@ActorLocal(name =     { ApplData.sonarName, ApplData.controllerName }, 
-			implement = {SonarActor22.class, ControllerForSonarActor.class }
-)
+@Actor(name = ApplData.sonarName, implement = SonarActor22.class)
+@Actor(name = ApplData.controllerName, implement = ControllerForSonarActor.class)
 public class TestSonarActor22 {
 	
 	public TestSonarActor22() {
@@ -22,19 +21,21 @@ public class TestSonarActor22 {
 	
 	protected void configure() {
 		DomainSystemConfig.simulation   	= true;			
-		DomainSystemConfig.tracing      	= false;		
+		DomainSystemConfig.tracing      	= true;
 		DomainSystemConfig.sonarDelay   	= 200;
-		CommSystemConfig.tracing        	= false;
+		DomainSystemConfig.sonarVerbose     = true;
+		CommSystemConfig.tracing        	= true;
 		
 		//con false, il ControllerForSonarActor chiede la distanza, 
 		//con true,  il ControllerForSonarActor agisce come observer
-		RadarSystemConfig.sonarObservable 	= false; 
+		RadarSystemConfig.sonarObservable 	= true;
 		
 		//ALTRO Observer oltr il Controller
 // 		new EventObserver(ApplData.observerName);
 // 		Qak22Context.registerAsEventObserver(ApplData.observerName, ApplData.evDistance);
 		
 		Qak22Context.handleLocalActorDecl(this);
+		Qak22Context.handleRepeatableActorDeclaration(this);
 		if( RadarSystemConfig.sonarObservable  ) {
  			Qak22Context.registerAsEventObserver(ApplData.controllerName, ApplData.evDistance);
 		}

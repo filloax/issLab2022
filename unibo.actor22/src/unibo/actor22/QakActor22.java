@@ -36,7 +36,7 @@ protected kotlin.coroutines.Continuation<? super Unit> mycompletion;
 	
 	//Invia la richiesta di elaborazione di un messaggio all'attore
 	protected void queueMsg(IApplMessage msg) {
-		super.autoMsg(msg, mycompletion);
+		sendMsgToMyself( msg );
 	}
 	
 /*

@@ -14,8 +14,8 @@ import unibo.actor22comm.utils.CommUtils;
  */
 public class ControllerForSonarActor extends QakActor22{
  
-protected IRadarDisplay radar;
-protected boolean on = true;
+	protected IRadarDisplay radar;
+	protected boolean on = true;
 
 	public ControllerForSonarActor(String name  ) {
 		super(name);
@@ -23,10 +23,11 @@ protected boolean on = true;
   	}
 
 	@Override
-	protected void handleMsg(IApplMessage msg) {  
+	protected void handleMsg(IApplMessage msg) {
+		ColorsOut.out(getName() + " | received msg type: " + msg.msgType(), ColorsOut.ANSI_PURPLE);
 		if( msg.isEvent() )        elabEvent(msg);
 		else if( msg.isDispatch()) elabCmd(msg) ;	
-		else if( msg.isReply() )   elabReply(msg) ;	
+		else if( msg.isReply() )   elabReply(msg) ;
  	}
 	
 
@@ -77,7 +78,10 @@ protected boolean on = true;
 
     protected void doControllerWork() {
 		CommUtils.aboutThreads(getName()  + " |  Before doControllerWork " + RadarSystemConfig.sonarObservable );
-    	if( ! RadarSystemConfig.sonarObservable)  request( ApplData.askDistance );
+    	if(!RadarSystemConfig.sonarObservable) {
+			ColorsOut.out(getName() + " | asking distance to sonar", ColorsOut.YELLOW);
+			request(ApplData.askDistance);
+		}
 	}	
 
 }
