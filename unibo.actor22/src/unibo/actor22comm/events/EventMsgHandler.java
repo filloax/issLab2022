@@ -38,7 +38,7 @@ protected HashMap<String,String> eventObserverMap = new HashMap<String,String>()
 	}  
 
 	protected void updateTheObservers(IApplMessage msg) {
-		ColorsOut.outappl("updateTheObservers:" + msg, ColorsOut.MAGENTA); 
+		//ColorsOut.outappl("updateTheObservers:" + msg, ColorsOut.MAGENTA); 
 		eventObserverMap.forEach(
 				( String actorName,  String evName) -> {
 					//ColorsOut.out("updateTheObservers:" + actorName + " evName:" + evName, ColorsOut.MAGENTA); 

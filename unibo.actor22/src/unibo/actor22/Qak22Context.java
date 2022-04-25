@@ -3,10 +3,9 @@ package unibo.actor22;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.Map;
-
 import it.unibo.kactor.IApplMessage;
-import unibo.actor22.annotations.*;
+import unibo.actor22.annotations.ActorLocal;
+import unibo.actor22.annotations.ActorRemote;
 import unibo.actor22comm.ProtocolInfo;
 import unibo.actor22comm.ProtocolType;
 import unibo.actor22comm.events.EventMsgHandler;
@@ -42,6 +41,12 @@ public class Qak22Context {
 	public static void removeActor(QakActor22 a) {	
         ctxMap.remove( a.getName() );
     }	
+	public static void showActorNames( ) {
+		ColorsOut.outappl("CURRENT ACTORS in Context:", ColorsOut.MAGENTA);
+		ctxMap.forEach( (  v,x) ->  
+    		ColorsOut.outappl("" + v , ColorsOut.MAGENTA)
+		 );
+	}
     public static QakActor22 getActor(String actorName) {
         return ctxMap.get(actorName);
     }
@@ -98,7 +103,8 @@ public class Qak22Context {
     public static void handleActorDeclaration(Object element) {
     	handleLocalActorDecl(element);
     	handleRemoteActorDecl(element);
-   }
+   }  
+    
  
 
    

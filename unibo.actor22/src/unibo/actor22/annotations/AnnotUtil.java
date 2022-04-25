@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import unibo.actor22.Qak22Context;
 import unibo.actor22comm.ProtocolInfo;
 import unibo.actor22comm.ProtocolType;
@@ -56,12 +55,12 @@ RELATED TO Actor22
         }
     }
 
-    public static Map<String, RemoteContext> getRemoteContexts(Object element) {
-        Map<String, RemoteContext> out = new HashMap<>();
+    public static Map<String, Context> getRemoteContexts(Object element) {
+        Map<String, Context> out = new HashMap<>();
         Class<?> clazz            = element.getClass();
         Annotation[] annotations  = clazz.getAnnotations();
-        RemoteContext[] remoteContexts = element.getClass().getAnnotationsByType(RemoteContext.class);
-        for (RemoteContext rc : remoteContexts) {
+        Context[] remoteContexts = element.getClass().getAnnotationsByType(Context.class);
+        for (Context rc : remoteContexts) {
             String name     = rc.name();
             String host     = rc.host();
             String port     = rc.port();
@@ -75,7 +74,7 @@ RELATED TO Actor22
 
     public static void handleRepeatableActorDeclaration(Object element) {
         Class<?> clazz = element.getClass();
-        Map<String, RemoteContext> remoteContexts = null;
+        Map<String, Context> remoteContexts = null;
         Actor[] actorAnnotations = clazz.getAnnotationsByType(Actor.class);
         for (Actor actor : actorAnnotations) {
             String name = actor.name();
@@ -84,7 +83,6 @@ RELATED TO Actor22
                 Class implement = actor.implement();
                 if (implement.equals(void.class))
                     throw new IllegalArgumentException("@Actor: Local actor needs a class specification");
-
                 try {
                     implement.getConstructor(String.class).newInstance(name);
                     ColorsOut.outappl( "Qak22Context | CREATED LOCAL ACTOR: "+ name, ColorsOut.MAGENTA );
@@ -93,7 +91,7 @@ RELATED TO Actor22
                     e.printStackTrace();
                 }
             } else {
-                String remoteContextName = actor.remoteContextName();
+                String remoteContextName = actor.contextName();
                 if (remoteContextName.equals(""))
                     throw new IllegalArgumentException("@Actor: Remote actor needs a remoteContextName");
                 if (remoteContexts == null)
@@ -102,7 +100,7 @@ RELATED TO Actor22
                     throw new IllegalArgumentException("@Actor: remoteContextName invalid, Available:" + remoteContexts.keySet());
                 }
 
-                RemoteContext rc = remoteContexts.get(remoteContextName);
+                Context rc = remoteContexts.get(remoteContextName);
                 Qak22Context.setActorAsRemote(name, rc.port(), rc.host(), rc.protocol());
                 ColorsOut.outappl( "Qak22Context | SET REMOTE ACTOR: "+ name, ColorsOut.MAGENTA );
             }
@@ -151,72 +149,51 @@ RELATED TO PROTOCOLS
     }
 
 
-    /*
--------------------------------------------------------------------------------
-RELATED TO ROBOT MOVES
--------------------------------------------------------------------------------
- */
+//    /*
+//-------------------------------------------------------------------------------
+//RELATED TO ROBOT MOVES
+//-------------------------------------------------------------------------------
+// */
+// 
+// 
+//    //Used also by IssArilRobotSupport
+//    public static boolean checkRobotConfigFile(
+//        String configFileName, HashMap<String, Integer> mvtimeMap){
+//        try{
+//            //spec( htime( 100 ),  ltime( 300 ), rtime( 300 ),  wtime( 600 ), wstime( 600 ) ).
+//            //System.out.println("IssAnnotationUtil | checkRobotConfigFile configFileName=" + configFileName);
+//            FileInputStream fis = new FileInputStream(configFileName);
+//            Scanner sc = new Scanner(fis);
+//            String line = sc.nextLine();
+//            //System.out.println("IssAnnotationUtil | checkRobotConfigFile line=" + line);
+//            String[] items = line.split(",");
+//            mvtimeMap.put("h", getRobotConfigInfo("htime", items[0] ));
+//            mvtimeMap.put("l", getRobotConfigInfo("ltime", items[1] ));
+//            mvtimeMap.put("r", getRobotConfigInfo("rtime", items[2] ));
+//            mvtimeMap.put("w", getRobotConfigInfo("wtime", items[3] ));
+//            mvtimeMap.put("s", getRobotConfigInfo("stime", items[4] ));
+//            //System.out.println("IssAnnotationUtil | checkRobotConfigFile ltime=:" + mvtimeMap.get("l"));
+//            return true;
+//        } catch (Exception e) {
+//            System.out.println("IssAnnotationUtil | checkRobotConfigFile WARNING:" + e.getMessage());
+//            return false;
+//        }
+//
+//    }
+//
+//    protected static Integer getRobotConfigInfo(String functor, String line){
+//        Pattern pattern = Pattern.compile(functor);
+//        Matcher matcher = pattern.matcher(line);
+//        String content = "0";
+//        if(matcher.find()) {
+//            int end = matcher.end() ;
+//            content = line.substring( end, line.indexOf(")") )
+//                    .replace("\"","")
+//                    .replace("(","").trim();
+//            //System.out.println("IssAnnotationUtil | getRobotConfigInfo functor=" + functor + " v=" + Integer.parseInt(content));
+//        }
+//        return Integer.parseInt( content );
+//    }
+//
  
- 
-    //Used also by IssArilRobotSupport
-    public static boolean checkRobotConfigFile(
-        String configFileName, HashMap<String, Integer> mvtimeMap){
-        try{
-            //spec( htime( 100 ),  ltime( 300 ), rtime( 300 ),  wtime( 600 ), wstime( 600 ) ).
-            //System.out.println("IssAnnotationUtil | checkRobotConfigFile configFileName=" + configFileName);
-            FileInputStream fis = new FileInputStream(configFileName);
-            Scanner sc = new Scanner(fis);
-            String line = sc.nextLine();
-            //System.out.println("IssAnnotationUtil | checkRobotConfigFile line=" + line);
-            String[] items = line.split(",");
-            mvtimeMap.put("h", getRobotConfigInfo("htime", items[0] ));
-            mvtimeMap.put("l", getRobotConfigInfo("ltime", items[1] ));
-            mvtimeMap.put("r", getRobotConfigInfo("rtime", items[2] ));
-            mvtimeMap.put("w", getRobotConfigInfo("wtime", items[3] ));
-            mvtimeMap.put("s", getRobotConfigInfo("stime", items[4] ));
-            //System.out.println("IssAnnotationUtil | checkRobotConfigFile ltime=:" + mvtimeMap.get("l"));
-            return true;
-        } catch (Exception e) {
-            System.out.println("IssAnnotationUtil | checkRobotConfigFile WARNING:" + e.getMessage());
-            return false;
-        }
-
-    }
-
-    protected static Integer getRobotConfigInfo(String functor, String line){
-        Pattern pattern = Pattern.compile(functor);
-        Matcher matcher = pattern.matcher(line);
-        String content = "0";
-        if(matcher.find()) {
-            int end = matcher.end() ;
-            content = line.substring( end, line.indexOf(")") )
-                    .replace("\"","")
-                    .replace("(","").trim();
-            //System.out.println("IssAnnotationUtil | getRobotConfigInfo functor=" + functor + " v=" + Integer.parseInt(content));
-        }
-        return Integer.parseInt( content );
-    }
-
-
-/*
-METHODS
- */
-    /*
-public static void injectRobotSupport(Object object, IssAppOperations rs)   {
-    //println("injectRobotSupport object=" + object);
-    Class<?> clazz = object.getClass();
-    for (Method method : clazz.getDeclaredMethods()) {
-        System.out.println("injectRobotSupport method=" + method);
-        if (method.isAnnotationPresent(InjectSupportSpec.class)) {
-            method.setAccessible(true);
-            try{
-                //System.out.println("injectRobotSupport invoke " + method);
-                method.invoke(object,rs);   //the first argument is this
-            }catch( Exception e ){
-                e.printStackTrace();
-            }
-        }
-    }
-}
-*/
 }
