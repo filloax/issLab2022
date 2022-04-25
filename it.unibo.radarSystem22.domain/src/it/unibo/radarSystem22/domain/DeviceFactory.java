@@ -23,4 +23,7 @@ public class DeviceFactory {
     public static IRadarDisplay createRadarDisplay() {
         return RadarDisplay.getRadarDisplay();
     }
+    public static IRadarDisplay createRadarGui() {
+        return createRadarDisplay();
+    }
 }

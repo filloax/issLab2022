@@ -19,7 +19,7 @@ protected boolean on = true;
 
 	public ControllerForSonarActor(String name  ) {
 		super(name);
-		radar = DeviceFactory.createRadarGui();
+		radar = DeviceFactory.createRadarDisplay();
   	}
 
 	@Override

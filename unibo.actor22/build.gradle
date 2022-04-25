@@ -81,6 +81,14 @@ jar {
     //manifest { attributes 'Main-Class': "$mainClassName" }
 }
 
+task copyJarToBin {
+    copy {
+        from 'build/libs'
+        into "../unibolibs"
+    }
+}
+jar.finalizedBy(copyJarToBin)
+
 /*
 distributions {
     main {

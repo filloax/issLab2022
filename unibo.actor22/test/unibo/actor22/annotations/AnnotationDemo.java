@@ -5,7 +5,7 @@ import unibo.actor22comm.utils.CommSystemConfig;
 import unibo.actor22comm.utils.CommUtils;
 
 @RemoteContext(name = "raspi", host = "locahost", port = "8080")
-@Actor(name = "raspi", local = false, remoteContextName = "raspi")
+@Actor(name = "raspi", local = false, contextName = "raspi")
 public class AnnotationDemo {
     public AnnotationDemo() {
         CommSystemConfig.tracing = true;
