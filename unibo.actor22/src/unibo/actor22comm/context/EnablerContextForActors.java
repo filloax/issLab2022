@@ -8,19 +8,29 @@ import unibo.actor22comm.udp.UdpServer;
 import unibo.actor22comm.utils.ColorsOut;
 
 public class EnablerContextForActors  implements IContext {  
-private IApplMsgHandler ctxMsgHandler;
- 
-protected String name;
-protected ProtocolType protocol;
-protected TcpServer serverTcp;
-protected UdpServer serverUdp;
-protected boolean isactive = false;
+	private static EnablerContextForActors myself = null;
+	private IApplMsgHandler ctxMsgHandler;
 
-	public EnablerContextForActors( String name, int port, ProtocolType protocol  )   { 
+	protected String name;
+	protected ProtocolType protocol;
+	protected TcpServer serverTcp;
+	protected UdpServer serverUdp;
+	protected boolean isactive = false;
+
+	public static void create(String name, int port, ProtocolType protocol) {
+		if( myself != null )
+			return;
+		else {
+			myself = new EnablerContextForActors(name,  ""+port,  protocol, new ContextMsgHandler("ctxH") );
+			myself.activate();
+		}
+	}
+
+	protected EnablerContextForActors( String name, int port, ProtocolType protocol  )   { 
 		this(name,""+port,protocol, new ContextMsgHandler("ctxH") );
 	}
 
-	public EnablerContextForActors( 
+	protected EnablerContextForActors( 
 			String name, String port, ProtocolType protocol, IApplMsgHandler handler )   { 
  		try {
 			this.name     			= name;
@@ -38,6 +48,10 @@ protected boolean isactive = false;
 		if( protocol == ProtocolType.tcp  ) {
 			int port = Integer.parseInt(portStr);
 			serverTcp = new TcpServer( name+"Tcp" , port,  handler );
+		}
+		if( protocol == ProtocolType.ws  ) {
+			int port = Integer.parseInt(portStr);
+			//lancio un server Spring
 		}
 		else if( protocol == ProtocolType.udp ) {  
 			int port = Integer.parseInt(portStr);

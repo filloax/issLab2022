@@ -1,12 +1,14 @@
+/*
+ClientUsingHttp.java
+*/
 package unibo.wenvUsage22.wshttp;
-
 import unibo.actor22comm.interfaces.Interaction2021;
 import unibo.actor22comm.utils.ColorsOut;
 import unibo.actor22comm.utils.CommUtils;
 import unibo.actor22comm.http.*;
 import unibo.wenvUsage22.common.ApplData;
 
-public class BoundaryWalkerHttp {
+public class BoundaryWalkerHttp { 
 	private  final String localHostName    = "localhost"; //"localhost"; 192.168.1.7
 	private  final int port                = 8090;
 	private  final String HttpURL          = "http://"+localHostName+":"+port+"/api/move";

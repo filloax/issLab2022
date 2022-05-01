@@ -6,7 +6,6 @@ TODO. eliminate the communication details from this level
 ===============================================================
 */
 package unibo.wenvUsage22.wshttp;
-import unibo.actor22comm.interfaces.IObservable;
 import unibo.actor22comm.interfaces.IObserver;
 import unibo.actor22comm.interfaces.Interaction2021;
 import unibo.actor22comm.utils.ColorsOut;
@@ -22,10 +21,13 @@ public class ClientUsingWs implements IObserver{
   
 	protected void doBasicMoves() throws Exception {
 		conn = WsConnection.create("localhost:8091" );
-		((IObservable)conn).addObserver(this);
+		((WsConnection)conn).addObserver(this);
  
  		//conn.forward( turnLeft( 800  ) );
- 		conn.forward( ApplData.moveForward(2300) );
+ 		conn.forward( ApplData.moveForward(1500) ); 
+ 			//La info di fine mossa viene gestita da update/2
+ 		
+ 		
 //		conn.forward( stop( ) );
 ////    	Thread.sleep( 500 );
 //		conn.forward( turnRight( 400 ) );
