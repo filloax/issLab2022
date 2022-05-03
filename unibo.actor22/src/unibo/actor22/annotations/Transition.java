@@ -5,13 +5,16 @@ import java.lang.annotation.*;
 /*
  * Le annotazioni Java accettano solo attributi di tipo primitivo o Class
  */
- 
-@Target (ElementType.METHOD)
+
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Repeatable(Transitions.class)
 public @interface Transition {
-	String name() default "t0";
-	String state()  ;
-	String msgId() default "emptyMove" ;
-	String guard() default "";
+    String name() default "t0";
+
+    String state();
+
+    String msgId() default "emptyMove";
+
+    String guard() default "";
 }
