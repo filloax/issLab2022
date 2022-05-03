@@ -100,7 +100,7 @@ public abstract class QakActor22FsmAnnot  extends QakActor22Fsm{
 					curMethod.invoke(  myself, msg   );  //I metodi hanno this come arg implicito
 					for( int j=0; j<nextStates.size();j++ ) {
 						Method g   =  guards.elementAt(j);
-						Boolean result = (Boolean) g.invoke(this);
+						Boolean result = (g != null) ? (Boolean) g.invoke(this) : true;
 						if( result ) {
 							//ColorsOut.outappl("g:"+ g + " result=" + result.getClass().getName(), ColorsOut.GREEN);
 							addTransition( nextStates.elementAt(j), msgIds.elementAt(j) );
