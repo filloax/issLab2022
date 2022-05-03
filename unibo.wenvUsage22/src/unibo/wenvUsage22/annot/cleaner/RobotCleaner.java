@@ -7,6 +7,7 @@ import org.json.JSONTokener;
 import unibo.actor22.QakActor22FsmAnnot;
 import unibo.actor22.annotations.State;
 import unibo.actor22.annotations.Transition;
+import unibo.actor22.annotations.TransitionGuard;
 import unibo.actor22comm.SystemData;
 import unibo.actor22comm.interfaces.Interaction2021;
 import unibo.actor22comm.utils.ColorsOut;
@@ -29,6 +30,7 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
     public static final String STATE_WALL_FORWARD = "collidedForward";
     public static final String STATE_BACK = "moveBack";
     public static final String STATE_WALL_BACK = "collidedBack";
+    public static final String STATE_LAST_COLUMN = "lastColumn";
     public static final String STATE_END = "endState";
     public static final String STATE_PAUSE = "pause";
 
@@ -45,6 +47,8 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
     @Transition( state = STATE_PAUSE , msgId = SystemData.haltSysCmdId )
     @Transition( state = STATE_FORWARD ,  msgId = SystemData.endMoveOkId )
     protected void robotStart( IApplMessage msg ) {
+        outInfo(msg.toString());
+
         setLastActiveState(STATE_INIT);
 
         outInfo(msg + " connecting (blocking all the actors ) ... ");
@@ -59,6 +63,8 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
     @Transition( state = STATE_PAUSE , msgId = SystemData.haltSysCmdId )
     @Transition( state = STATE_FORWARD,  msgId = SystemData.endMoveOkId)
     protected void moveForward(IApplMessage msg) {
+        outInfo(msg.toString());
+
         setLastActiveState(STATE_FORWARD);
 
         printPosition();
@@ -68,10 +74,12 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
     }
      
     @State( name = STATE_WALL_FORWARD)
-    @Transition( state = STATE_END, msgId = SystemData.endMoveKoId)
+    @Transition( state = STATE_LAST_COLUMN, msgId = SystemData.endMoveKoId)
     @Transition( state = STATE_PAUSE , msgId = SystemData.haltSysCmdId )
     @Transition( state = STATE_BACK, msgId = SystemData.endMoveOkId)
     protected void collidedForward( IApplMessage msg ) {
+        outInfo(msg.toString());
+
         setLastActiveState(STATE_WALL_FORWARD);
 
         JSONObject data = getMsgData(msg);
@@ -88,6 +96,8 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
     @Transition( state = STATE_PAUSE , msgId = SystemData.haltSysCmdId )
     @Transition( state = STATE_BACK,  msgId = SystemData.endMoveOkId)
     protected void moveBack( IApplMessage msg ) {
+        outInfo(msg.toString());
+
         setLastActiveState(STATE_BACK);
 
         printPosition();
@@ -96,10 +106,12 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
     }
 
     @State( name = STATE_WALL_BACK)
-    @Transition( state = STATE_END , msgId = SystemData.endMoveKoId )
+    @Transition( state = STATE_LAST_COLUMN , msgId = SystemData.endMoveKoId )
     @Transition( state = STATE_PAUSE , msgId = SystemData.haltSysCmdId )
     @Transition( state = STATE_FORWARD, msgId = SystemData.endMoveOkId)
     protected void collidedBack( IApplMessage msg ) {
+        outInfo(msg.toString());
+
         setLastActiveState(STATE_WALL_BACK);
 
         JSONObject data = getMsgData(msg);
@@ -109,6 +121,20 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
         printPosition();
         VRobotMoves.turnRightAndStep(getName(), 300, conn);
         addPosition(1, 0);
+    }
+
+    @State( name = STATE_LAST_COLUMN)
+    @Transition( state = STATE_END , msgId = SystemData.endMoveKoId )
+    @Transition( state = STATE_PAUSE , msgId = SystemData.haltSysCmdId )
+    @Transition( state = STATE_LAST_COLUMN,  msgId = SystemData.endMoveOkId)
+    protected void lastColumn(IApplMessage msg) {
+        outInfo(msg.toString());
+
+        setLastActiveState(STATE_LAST_COLUMN);
+
+        //printPosition();
+        VRobotMoves.step(getName(), conn);
+        //addPosition(0, -1); // servirebbero due stati per distinguere, o tracciare direzione
     }
 
     @State(name = STATE_END)
@@ -123,15 +149,33 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
     }
 
     @State(name = STATE_PAUSE)
-    @Transition(state = STATE_FORWARD, msgId = SystemData.startSysCmdId, guard = GuardPauseForward.class)
-    @Transition(state = STATE_BACK, msgId = SystemData.startSysCmdId, guard = GuardPauseBack.class)
+    @Transition(state = STATE_FORWARD, msgId = SystemData.startSysCmdId, guard = "guardPauseForward")
+    @Transition(state = STATE_BACK, msgId = SystemData.startSysCmdId, guard = "guardPauseBack")
+    @Transition(state = STATE_LAST_COLUMN, msgId = SystemData.startSysCmdId, guard = "guardPauseLastColumn")
     protected void pause(IApplMessage msg) {
         CommUtils.delay(100);
     }
 
+    @TransitionGuard
+    protected boolean guardPauseForward() {
+        return lastActiveState.equals(STATE_FORWARD)
+                || lastActiveState.equals(STATE_WALL_FORWARD)
+                || lastActiveState.equals(STATE_INIT);
+    }
+
+    @TransitionGuard
+    protected boolean guardPauseBack() {
+        return lastActiveState.equals(STATE_BACK)
+                || lastActiveState.equals(STATE_WALL_BACK);
+    }
+
+    @TransitionGuard
+    protected boolean guardPauseLastColumn() {
+        return lastActiveState.equals(STATE_LAST_COLUMN);
+    }
+
     protected void setLastActiveState(String state) {
-        setGuardState(state);
-        setLastActiveState(state); // inutilizzato al momento
+        lastActiveState = state;
     }
 
     protected void updatePosition(float x, float y) {
@@ -162,37 +206,4 @@ public class RobotCleaner extends QakActor22FsmAnnot  {
 //         System.out.println(OldMsgQueue);
 //         super.handleMsg(msg);
 //    }
-
-    // Guardie
-
-    protected static void setGuardState(String state) {
-        GuardPauseForward.setLastActiveState(state);
-        GuardPauseBack.setLastActiveState(state);
-    }
-
-    protected static abstract class GuardPauseForward {
-        protected static String lastActiveState;
-
-        public static void setLastActiveState(String lastActiveState) {
-            GuardPauseForward.setLastActiveState(lastActiveState);
-        }
-
-        public boolean eval( ) {
-            return lastActiveState.equals(STATE_FORWARD)
-                    || lastActiveState.equals(STATE_WALL_FORWARD)
-                    || lastActiveState.equals(STATE_INIT);
-        }
-    }
-    protected static abstract class GuardPauseBack {
-        protected static String lastActiveState;
-
-        public static void setLastActiveState(String lastActiveState) {
-            GuardPauseBack.setLastActiveState(lastActiveState);
-        }
-
-        public boolean eval( ) {
-            return lastActiveState.equals(STATE_BACK)
-                    || lastActiveState.equals(STATE_WALL_BACK);
-        }
-    }
 }
