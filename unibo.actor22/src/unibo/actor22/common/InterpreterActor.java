@@ -22,12 +22,12 @@ public class InterpreterActor extends QakActor22 {
             if (msg.isRequest()) {
                 String answer = interpreter.elaborateRequest(msg.msgContent());
                 IApplMessage reply = MsgUtil.buildReply(
-                    getName(),
-                    msg.msgId(),
-                    answer,
-                    msg.msgSender()
+                        getName(),
+                        msg.msgId(),
+                        answer,
+                        msg.msgSender()
                 );
-                ColorsOut.out(getName()  + " | reply= " + reply, ColorsOut.CYAN);
+                ColorsOut.out(getName() + " | reply= " + reply, ColorsOut.CYAN);
                 sendReply(msg, reply);
             } else {
                 interpreter.elaborateCommand(msg.msgContent());

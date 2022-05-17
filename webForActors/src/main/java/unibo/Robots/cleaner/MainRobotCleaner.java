@@ -14,7 +14,7 @@ public class MainRobotCleaner {
     public static final String myName = "cleaner";
 
     public void doJob() {
-        CommSystemConfig.tracing = false;
+        CommSystemConfig.tracing = true;
         Qak22Context.configureTheSystem(this);
         Qak22Context.showActorNames();
         //Qak22Util.sendAMsg( SystemData.startSysCmd("main",myName) );

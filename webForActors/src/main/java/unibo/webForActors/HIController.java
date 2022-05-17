@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import unibo.Robots.basic.MainBasicRobot;
 import unibo.Robots.cleaner.MainRobotCleaner;
+import unibo.Robots.cleaner.RobotCleaner;
 import unibo.actor22.Qak22Context;
 import unibo.actor22.Qak22Util;
 import unibo.actor22comm.ProtocolType;
@@ -30,7 +31,6 @@ import unibo.actor22comm.utils.CommUtils;
 public class HIController {
     private static final String robotCmdId = "move";
     private static String robotName = "cleaner";
-    private static final boolean cleanerAppl = true;
 
     private Interaction2021 conn;
     private String mainPage = "RobotCleanerGui";
@@ -48,6 +48,11 @@ public class HIController {
         MainRobotCleaner appl = new MainRobotCleaner();
         appl.doJob();
         //appl.terminate();
+    }
+
+    protected void resetLocalRobotCleaner() {
+        Qak22Context.removeActor(Qak22Context.getActor(MainRobotCleaner.myName));
+        new RobotCleaner(MainRobotCleaner.myName);
     }
 
     protected void createBasicRobot() {
@@ -122,6 +127,12 @@ public class HIController {
                 ColorsOut.outerr("HIController | doMove ERROR:" + e.getMessage());
             }
         }
+        return mainPage;
+    }
+
+    @PostMapping("/reset")
+    public String reset(Model viewmodel) {
+        resetLocalRobotCleaner();
         return mainPage;
     }
 
