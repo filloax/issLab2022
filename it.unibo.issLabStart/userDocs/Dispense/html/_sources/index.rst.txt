@@ -36,6 +36,8 @@ iss22
    OltreTcp
    QakIntro
    BasicRobot22
+   Applicazioni22
+   KotlinNotes
 
 
 Indices and tables
