@@ -36,14 +36,14 @@ fun consumeSquares( squares: ReceiveChannel<Int> ){
 
 
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 fun main() {
     println("BEGINS CPU=$cpus ${kotlindemo.curThread()}")
     runBlocking {
         println(this)
-         //val squares = produceSquares()
-        //consumeSquares(squares)
+         val squares = produceSquares()
+        consumeSquares(squares)
         println("ENDS runBlocking ${kotlindemo.curThread()}")
     }
     println("ENDS main ${kotlindemo.curThread()}")

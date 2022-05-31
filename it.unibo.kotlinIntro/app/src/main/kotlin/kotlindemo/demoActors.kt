@@ -8,7 +8,7 @@ var dispatcher    = newSingleThreadContext("single")
 lateinit var receiverActor : SendChannel<String>
 
 @kotlinx.coroutines.ObsoleteCoroutinesApi
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 fun startReceiver( scope : CoroutineScope){
 	receiverActor = scope.actor<String>( dispatcher, capacity = 2) {
 		//actor is a coroutine builder (dual of produce)
@@ -31,7 +31,7 @@ fun startReceiver( scope : CoroutineScope){
 	}
 }
 @kotlinx.coroutines.ObsoleteCoroutinesApi
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 fun startSender( ){
 	val myScope = CoroutineScope(dispatcher)
 	//myScope.launch{	//(1)
@@ -46,14 +46,15 @@ fun startSender( ){
  	}
 }
 
-@kotlinx.coroutines.ObsoleteCoroutinesApi
-@kotlinx.coroutines.ExperimentalCoroutinesApi
-fun main() {
-	println("BEGINS CPU=$cpus ${curThread()}")
+fun actorsSenderReceiver(){
 	runBlocking {
 		startReceiver(this)	//first
 		startSender()
-		println("ENDS runBlocking ${curThread()}")
 	}
+}
+
+fun main() {
+	println("BEGINS CPU=$cpus ${curThread()}")
+	actorsSenderReceiver();
 	println("ENDS main ${curThread()}")
 }

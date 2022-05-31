@@ -1,16 +1,9 @@
 package concur
 
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.consume
-import kotlinx.coroutines.channels.consumeEach
-import kotlinx.coroutines.channels.produce
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.actor
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.launch
@@ -37,7 +30,7 @@ class CounterMsg(
   val response:CompletableDeferred<Int>?=null){
 }
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 //fun  counterActor()  =  GlobalScope.actor<CounterMsg> {
 val  counter  =  GlobalScope.actor<CounterMsg> {
@@ -52,7 +45,7 @@ val  counter  =  GlobalScope.actor<CounterMsg> {
         }    }
 }
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 fun main() = runBlocking{
     val cpus = Runtime.getRuntime().availableProcessors();

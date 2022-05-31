@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 val aProducer : ReceiveChannel<Int> = GlobalScope.produce{
     for( i in 1..3 ){
@@ -14,7 +14,7 @@ val aProducer : ReceiveChannel<Int> = GlobalScope.produce{
     }
 }
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 fun consumer1(scope: CoroutineScope){
     scope.launch{
@@ -23,7 +23,7 @@ fun consumer1(scope: CoroutineScope){
         println( "consumer1 receives ${v} in ${curThread()}" )
      }
 }
-@kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 fun consumer2(scope: CoroutineScope){
     scope.launch{
@@ -35,14 +35,16 @@ fun consumer2(scope: CoroutineScope){
     }
 }
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
-@kotlinx.coroutines.ObsoleteCoroutinesApi
-fun main() {
-    println("BEGINS CPU=${kotlindemo.cpus} ${kotlindemo.curThread()}")
+fun manyConsumers(){
     runBlocking {
         consumer1(this)
         consumer2(this)
-        println("ENDS runBlocking ${kotlindemo.curThread()}")
     }
+}
+
+@kotlinx.coroutines.ObsoleteCoroutinesApi
+fun main() {
+    println("BEGINS CPU=${kotlindemo.cpus} ${kotlindemo.curThread()}")
+    manyConsumers()
     println("ENDS main ${kotlindemo.curThread()}")
 }
