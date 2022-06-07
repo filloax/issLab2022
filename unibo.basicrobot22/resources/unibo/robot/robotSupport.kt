@@ -12,6 +12,7 @@ package unibo.robot
  -------------------------------------------------------------------------------------------------
  */
 
+import it.unibo.`is`.interfaces.protocols.IConnInteraction
 import it.unibo.kactor.ActorBasic
 import it.unibo.kactor.ActorBasicFsm
 import org.json.JSONObject
@@ -19,6 +20,8 @@ import java.io.File
 import it.unibo.kactor.MsgUtil
 import it.unibo.kactor.QakContext
 import kotlinx.coroutines.runBlocking
+import robotMbot.mbotSupport.conn
+
 //import robotMbot.robotDataSourceArduino
  
 
@@ -40,17 +43,25 @@ object robotSupport{
 		val hostAddr     = jsonObject.getString("ipvirtualrobot") 
 		robotKind        = jsonObject.getString("type") 
 		val robotPort    = jsonObject.getString("port") 
-		println( "		--- robotSupport | CREATED for $robotKind host=$hostAddr port=$robotPort owner=$owner" )
+		println( "		--- robotSupport | CREATING for $robotKind host=$hostAddr port=$robotPort owner=$owner" )
 
 		when( robotKind ){		
 			//"mockrobot"  ->  { robotMock.mockrobotSupport.create(  ) }
 			"virtual"    ->  { robotVirtual.virtualrobotSupport2021.create( owner, hostAddr, robotPort) }
   			"realnano"   ->  {
 				robotNano.nanoSupport.create( owner )
- 				val realsonar = robotNano.sonarHCSR04SupportActor("realsonar for nano")
+ 				val realsonar = robotNano.sonarHCSR04SupportActor("realsonar")
 				//Context injection  
 				owner.context!!.addInternalActor(realsonar)  
-  				println("		--- robotSupport | has created the realsonar")
+  				println("		--- realnano robotSupport | has created the realsonar")
+			}
+			"realmbot" -> {
+				robotMbot.mbotSupport.create(owner, robotPort)
+				/*
+				val realsonar = robotMbot.robotDataSourceArduino("realsonar", owner, conn)
+				//Context injection
+				owner.context!!.addInternalActor(realsonar)  
+  				println("		--- realmbot robotSupport | has created the realsonar")*/
 			}
  			else -> println( "		--- robotSupport | robot $robotKind unknown" )
  		}
@@ -69,7 +80,8 @@ object robotSupport{
 			//"mockrobot"  -> { robotMock.mockrobotSupport.move( cmd ) 					  }
 			"virtual"    -> { robotVirtual.virtualrobotSupport2021.move(  cmd ) 	  }
   			"realnano"   -> { robotNano.nanoSupport.move( cmd)	}
-			else         -> println( "		--- robotSupport | robot unknown")
+            "realmbot"   -> { robotMbot.mbotSupport.move( cmd )	}
+			else         -> println( "		--- robotSupport: move| robot unknown")
 		}		
 	}
 	
@@ -86,7 +98,7 @@ object robotSupport{
 	
 	fun createSonarPipe(robotsonar: ActorBasic?){
  		if( robotsonar != null ){ 
-			runBlocking{
+			//runBlocking{
 				//ACTIVATE THE DATA SOURCE  
 				//MsgUtil.sendMsg("robotSupport", "sonarstart", "sonarstart(do)", robotsonar)
 		 		//SET THE PIPE  
@@ -94,9 +106,9 @@ object robotSupport{
 		 			subscribeLocalActor("datacleaner").
 		 			subscribeLocalActor("distancefilter").
 		 			subscribeLocalActor("basicrobot")		//in order to perceive obstacle
-				println("robotSupport | SONAR PIPE DONE") 
-			}
-	 	}else{
+			//}
+			println("robotSupport | SONAR PIPE DONE NO runBlocking")
+		}else{
 	 		println("robotSupport | WARNING: sonar NOT FOUND")
 	 	}		
 	}

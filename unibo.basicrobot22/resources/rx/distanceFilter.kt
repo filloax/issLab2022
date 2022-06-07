@@ -1,12 +1,8 @@
 package rx
  
-import it.unibo.kactor.MsgUtil
-import kotlinx.coroutines.delay
-import it.unibo.kactor.ActorBasic
-import it.unibo.kactor.ApplMessage
+import it.unibo.kactor.*
 import alice.tuprolog.Term
 import alice.tuprolog.Struct
-import it.unibo.kactor.IApplMessage
 
 
  
@@ -57,8 +53,9 @@ var curSonarDistance	= 0
 	 		if( curSonarDistance != Distance){
 				//println("$tt $name |  $Distance")
 				curSonarDistance = Distance
-		 	 	val m0 = MsgUtil.buildEvent(name, "sonar", "sonar($Distance)")
-		 	 	emit( m0 )			
+		 	 	val m0 = MsgUtil.buildEvent(name, "sonardata", "distance($Distance)")
+				println("$tt $name |  emit $m0")
+		 	 	emit( m0 )
 			}
   		}
    	}

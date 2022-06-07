@@ -1,7 +1,6 @@
 /*
 ================================================================================
-build_ctxbasicrobot.gradle
-GENERATED ONLY ONCE
+GUARDA (e clean C:\Users\anatali\.gradle\wrapper\dists
 ================================================================================
 */
 plugins {
@@ -15,7 +14,7 @@ plugins {
 }
 
 version '1.0'
-sourceCompatibility = 11
+sourceCompatibility = 1.8	
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -44,6 +43,11 @@ dependencies {
     implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: "$kotlinVersion", ext: 'pom'
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm
     implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core-jvm', version: "$kotlinVersion"
+
+
+//ARDUINO
+    // https://mvnrepository.com/artifact/org.scream3r/jssc
+    implementation group: 'org.scream3r', name: 'jssc', version: '2.8.0'
 
     /*  MQTT *************************************************************************************************************** */
     // https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
